@@ -30,6 +30,7 @@ function Search({ selectedTypes, setSelectedTypes }) {
                         type="checkbox"
                         value={type}
                         id={type}
+                        onChange={handleChange}
                     />
                     <label htmlFor={type}>{type}</label>
 
