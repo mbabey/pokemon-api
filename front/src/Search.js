@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 function Search({ selectedTypes, setSelectedTypes }) {
-    const [types, setTypes] = useState('');
+    const [types, setTypes] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -16,9 +16,9 @@ function Search({ selectedTypes, setSelectedTypes }) {
     const handleChange = (e) => {
         const { value, checked } = e.target;
         if (checked) {
-            setSelectedTypes({ ...selectedTypes, value });
+            setSelectedTypes([ ...selectedTypes, value ]);
         } else {
-            setSelectedTypes({ selectedTypes.filter(type => type !== value) });
+            setSelectedTypes( selectedTypes.filter(type => type !== value) );
         }
     }
 

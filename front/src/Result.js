@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 function Result({ selectedTypes }) {
-    const [pokemon, setPokemon] = useState('');
+    const [pokemon, setPokemon] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -35,7 +35,5 @@ function Result({ selectedTypes }) {
         </div>
     )
 }
-
-isSelected = 
 
 export default Result

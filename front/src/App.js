@@ -4,7 +4,7 @@ import Result from "./Result";
 import { useState } from "react";
 
 function App() {
-  const [selectedTypes, setSelectedTypes] = useState('')
+  const [selectedTypes, setSelectedTypes] = useState([])
 
   return (
     <>
