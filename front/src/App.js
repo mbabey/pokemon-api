@@ -1,6 +1,7 @@
 import Login from "./Login";
 import Search from "./Search";
 import Result from "./Result";
+import { useState } from "react";
 
 function App() {
   const [selectedTypes, setSelectedTypes] = useState('')

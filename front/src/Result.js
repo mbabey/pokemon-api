@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-function Result() {
+function Result({ selectedTypes }) {
     const [pokemon, setPokemon] = useState('');
 
     useEffect(() => {
@@ -14,8 +14,28 @@ function Result() {
     }, [])
 
     return (
-        <div>Result</div>
+        <div>
+            {
+                pokemon.map(poke => {
+                    if (selectedTypes.length === 0)
+                    {
+                        return (<></>)
+                    }
+                    if (selectedTypes.every((type => poke.type.includes(type))))
+                    {
+                        return (
+                            <>
+                                {poke.name.english}
+                                <br />
+                            </>
+                        )
+                    }
+                })
+            }
+        </div>
     )
 }
+
+isSelected = 
 
 export default Result
