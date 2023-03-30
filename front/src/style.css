@@ -1,0 +1,13 @@
+img {
+    width: 100px;
+    height: auto;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonActive {
+    background-color: green;
+}
