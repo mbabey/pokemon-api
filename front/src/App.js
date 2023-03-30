@@ -5,7 +5,14 @@ import Result from "./Result";
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <Search
+        selectedTypes={selectedTypes}
+        setSelectedTypes={setSelectedTypes}
+      />
+      <Result
+        selectedTypes={selectedTypes}
+      />
     </>
   );
 }

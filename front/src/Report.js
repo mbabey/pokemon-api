@@ -13,7 +13,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken }) {
         const currentTime = Date.now() / 1000;
         if (decoded.exp < currentTime) {
             console.log("token expired");
-            await axios.get('http://localhost:5010/requestNewAccessToken',
+            const res = await axios.get('http://localhost:5010/requestNewAccessToken',
                 {
                     headers: {
                         'Authorization': refreshToken
