@@ -3,6 +3,8 @@ import Search from "./Search";
 import Result from "./Result";
 
 function App() {
+  const [selectedTypes, setSelectedTypes] = useState('')
+
   return (
     <>
       {/* <Login /> */}

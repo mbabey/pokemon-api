@@ -11,7 +11,7 @@ function Search({ selectedTypes, setSelectedTypes }) {
             setTypes(res.data.map(type => type.english));
         }
         fetchData();
-    });
+    }, []);
 
     const handleChange = (e) => {
         const { value, checked } = e.target;
