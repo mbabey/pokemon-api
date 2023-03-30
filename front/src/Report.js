@@ -2,13 +2,19 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-function Report(id) {
+function Report({ id, accessToken, setAccessToken, refreshToken }) {
 
     const [reportTable, setReportTable] = React.useState(null)
 
     useEffect(() => {
         async function fetchReport() {
-            const res = await axios.get(`http://localhost:5000/report/${id}`);
+            const res = await axios.get(
+                `http://localhost:5000/report?id=${id}`,
+                {
+                    headers: {
+                        "Authorization": accessToken
+                    }
+                });
         }
         fetchReport();
     }, { id });
@@ -17,9 +23,8 @@ function Report(id) {
         <div>
             Report {id}
             {
-                true && <div>
-                    reportTable
-                </div>
+                reportTable &&
+                reportTable
             }
         </div>
     )
