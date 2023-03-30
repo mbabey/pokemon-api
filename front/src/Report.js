@@ -20,6 +20,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken }) {
                     }
                 });
             setAccessToken(res.headers['authorization']);
+            config.headers['Authorization'] = res.headers['Authorization'];
         }
 
         return config;

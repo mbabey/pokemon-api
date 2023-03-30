@@ -9,6 +9,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
+    const [user, setUser] = useState('');
 
     const onClickHandle = async (e) => {
         e.preventDefault();
@@ -18,6 +19,7 @@ function Login() {
                 password: password
             });
         console.log(res.data);
+        setUser(res.data);
         const authorization_tokens = res.headers('authorization').split(',');
         setAccessToken(authorization_tokens[1]);
         setRefreshToken(authorization_tokens[0]);
@@ -26,10 +28,11 @@ function Login() {
     return (
         <div>
             {
-                accessToken && <Dashboard 
+                accessToken && user?.role === 'admin' &&
+                <Dashboard
                     accessToken={accessToken}
                     setAccessToken={setAccessToken}
-                    refreshToken={refreshToken}    
+                    refreshToken={refreshToken}
                 />
             }
             {
@@ -47,7 +50,7 @@ function Login() {
                     <button type="submit">Login</button>
                 </form>
             }
-            
+
         </div>
     )
 }
