@@ -19,8 +19,8 @@ function Login() {
         });
         console.log(res.data);
         const authorization_tokens = res.headers('authorization').split(',');
-        accessToken = authorization_tokens[1];
-        refreshToken = authorization_tokens[0];
+        setAccessToken(authorization_tokens[1]);
+        setRefreshToken(authorization_tokens[0]);
         console.log(authorization_tokens);
     }
 
