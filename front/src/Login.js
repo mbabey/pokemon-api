@@ -26,7 +26,11 @@ function Login() {
     return (
         <div>
             {
-                accessToken && <Dashboard />
+                accessToken && <Dashboard 
+                    accessToken={accessToken}
+                    setAccessToken={setAccessToken}
+                    refreshToken={refreshToken}    
+                />
             }
             {
                 !accessToken && <form onSubmit={onClickHandle}>
