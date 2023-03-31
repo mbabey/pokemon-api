@@ -13,8 +13,13 @@ function PokemonCard({ poke }) {
         return ""
     }
 
+function showStats(poke)
+{
+    console.log(poke)
+}
+
     return (
-        <div className={"poke-card"}>
+        <div className={"poke-card"} onClick={showStats(poke)}>
             <div className={"id"}>#{zeroes(poke.id)}{poke.id}</div>
             <div className={"name"}>{poke.name.english}</div>
             <div className={"pic"}>
