@@ -13,10 +13,9 @@ function PokemonCard({ poke }) {
         return ""
     }
 
-function showStats(poke)
-{
-    console.log(poke)
-}
+    function showStats(poke) {
+        return (<div>hmm</div>)
+    }
 
     return (
         <div className={"poke-card"} onClick={() => showStats(poke)}>
