@@ -4,18 +4,11 @@ body{
     background-repeat: repeat;
 }
 
-img {
-    width: 100px;
-    height: auto;
-}
-
-.images {
-    display: flex;
-    flex-direction: row;
-}
-
-.buttonActive {
-    background-color: green;
+.type-checkboxes-container
+{
+    background-color: #00000055;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
 }
 
 .poke-card
@@ -51,4 +44,18 @@ img {
     align-content: center;
     justify-content: center;
     filter: drop-shadow(10px 5px 4px #00000044);
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonActive {
+    background-color: green;
 }
