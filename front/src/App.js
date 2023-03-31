@@ -5,7 +5,8 @@ import { useState } from "react";
 
 function App() {
   const PAGE_SIZE = 10;
-  const [selectedTypes, setSelectedTypes] = useState([])
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [queryName, setQueryName] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
@@ -14,6 +15,8 @@ function App() {
       <Search
         selectedTypes={selectedTypes}
         setSelectedTypes={setSelectedTypes}
+        queryName={queryName}
+        setQueryName={setQueryName}
       />
       <Result
         selectedTypes={selectedTypes}

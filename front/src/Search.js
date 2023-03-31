@@ -22,6 +22,11 @@ function Search({ selectedTypes, setSelectedTypes }) {
         }
     }
 
+    const handleNameChange = (e) => {
+        const { value } = e.target;
+        console.log(value);
+    }
+
     return (
         <div>
             {
@@ -36,6 +41,7 @@ function Search({ selectedTypes, setSelectedTypes }) {
 
                 </div>)
             }
+            <input type="text" id="pokename" placeholder="Enter a pokemon's name to search." />
         </div>
     )
 }
