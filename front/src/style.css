@@ -62,6 +62,7 @@ body {
     margin: 5px;
     height: 2rem;
     position: relative;
+    transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .type-checkbox.child-checked {
@@ -71,6 +72,7 @@ body {
 
 .type-checkbox:hover {
     border: 1px solid #00000000;
+    transform: scale(1.03);   
 }
 
 .type-checkbox>input {
