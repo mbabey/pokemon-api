@@ -1,4 +1,5 @@
 import React from 'react'
+import './style.css'
 
 function PokemonCard({ poke }) {
 
@@ -14,6 +15,10 @@ function PokemonCard({ poke }) {
 
     return (
         <div>
+            <div className={"id-name"}>
+                <div className={"id"}>{poke.id}</div>
+                <div className={"name"}>{poke.name.english}</div>
+            </div>
             <div>
                 <img src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${zeroes(poke.id)}${poke.id}.png`} alt={`Pokemon ${poke.id}`}></img>
             </div>

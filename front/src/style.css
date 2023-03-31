@@ -11,3 +11,15 @@ img {
 .buttonActive {
     background-color: green;
 }
+
+.id-name
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.id {
+    width: 2rem;
+    text-align:center;
+}
