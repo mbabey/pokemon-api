@@ -46,6 +46,7 @@
     background-color: #f0f0f5;
     border-radius: 10px;
     padding: 1rem;
+    margin: 20px;
 }
 
 .search-field-container>h4
@@ -67,7 +68,6 @@
     box-shadow: 0 0 5px #00000033;
     border-radius: 10px;
     background-color: #ffffff;
-    /* margin: 5px; */
     height: 2rem;
     position: relative;
     transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
