@@ -1,5 +1,6 @@
 :root {
     /*  Hex Colours for Types: https://www.epidemicjohto.com/t882-type-colors-hex-colors */
+    /* 100% Alpha */
     --Normal-Type: #A8A77A;
     --Fire-Type: #EE8130;
     --Water-Type: #6390F0;
@@ -19,6 +20,7 @@
     --Steel-Type: #B7B7CE;
     --Fairy-Type: #D685AD;
 
+    /* 50% Alpha */
     --Normal-Type-Half: #A8A77A77;
     --Fire-Type-Half: #EE813077;
     --Water-Type-Half: #6390F077;
@@ -46,19 +48,29 @@ body {
 }
 
 .type-checkboxes-container {
-    background-color: #00000033;
+    background-color: #f0f0f5;
+    border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(3, 33%);
+    grid-template-columns: repeat(3, 33.333%);
 }
 
 .type-checkbox {
-    border: 1px solid black;
-    margin: 1px;
+    border: 1px solid #00000033;
+    box-shadow: 0 0 5px #00000033;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin: 5px;
+    height: 2rem;
     position: relative;
 }
 
+.type-checkbox.child-checked {
+    border: 1px solid #00000000;
+    box-shadow: 0 0 10px #00000033;
+}
+
 .type-checkbox:hover {
-    background-color: #00000044;
+    border: 1px solid #00000000;
 }
 
 .type-checkbox>input {
@@ -75,8 +87,9 @@ body {
 
 .type-checkbox>label{
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .poke-card {
