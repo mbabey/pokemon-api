@@ -18,8 +18,10 @@ function Search({ selectedTypes, setSelectedTypes, setQueryName }) {
         const { value, checked } = e.target;
         if (checked) {
             setSelectedTypes([...selectedTypes, value]);
+            e.target.parentNode.classList.add("child-checked");
         } else {
             setSelectedTypes(selectedTypes.filter(type => type !== value));
+            e.target.parentNode.classList.remove("child-checked");
         }
     }
 
@@ -32,7 +34,7 @@ function Search({ selectedTypes, setSelectedTypes, setQueryName }) {
             <div className={"type-checkboxes-container"}>
                 {
                     types.map(type =>
-                        <div key={type} className={"type-checkbox"}>
+                        <div key={type} className={`type-checkbox ${type}`}>
                             <input
                                 type="checkbox"
                                 value={type}
