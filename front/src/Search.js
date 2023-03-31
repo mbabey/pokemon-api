@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-function Search({ selectedTypes, setSelectedTypes }) {
+function Search({ selectedTypes, setSelectedTypes, setQueryName }) {
     const [types, setTypes] = useState([]);
 
     useEffect(() => {
@@ -16,15 +16,16 @@ function Search({ selectedTypes, setSelectedTypes }) {
     const handleChange = (e) => {
         const { value, checked } = e.target;
         if (checked) {
-            setSelectedTypes([ ...selectedTypes, value ]);
+            setSelectedTypes([...selectedTypes, value]);
         } else {
-            setSelectedTypes( selectedTypes.filter(type => type !== value) );
+            setSelectedTypes(selectedTypes.filter(type => type !== value));
         }
     }
 
     const handleNameChange = (e) => {
         const { value } = e.target;
         console.log(value);
+        setQueryName(value);
     }
 
     return (
@@ -41,7 +42,12 @@ function Search({ selectedTypes, setSelectedTypes }) {
 
                 </div>)
             }
-            <input type="text" id="pokename" placeholder="Enter a pokemon's name to search." />
+            <input
+                type="text"
+                id="query-name"
+                placeholder="Enter a pokemon's name to search."
+                onChange={handleNameChange}
+            />
         </div>
     )
 }

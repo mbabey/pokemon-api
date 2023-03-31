@@ -15,7 +15,6 @@ function App() {
       <Search
         selectedTypes={selectedTypes}
         setSelectedTypes={setSelectedTypes}
-        queryName={queryName}
         setQueryName={setQueryName}
       />
       <Result
