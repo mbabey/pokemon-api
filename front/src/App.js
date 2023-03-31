@@ -19,6 +19,7 @@ function App() {
       />
       <Result
         selectedTypes={selectedTypes}
+        queryName={queryName}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         PAGE_SIZE={PAGE_SIZE}

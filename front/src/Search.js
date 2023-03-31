@@ -23,9 +23,7 @@ function Search({ selectedTypes, setSelectedTypes, setQueryName }) {
     }
 
     const handleNameChange = (e) => {
-        const { value } = e.target;
-        console.log(value);
-        setQueryName(value);
+        setQueryName(e.target.value);
     }
 
     return (

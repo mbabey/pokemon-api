@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Pagination from './Pagination';
 
-function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
+function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SIZE }) {
     const [pokedex, setPokedex] = useState([]);
 
     useEffect(() => {
@@ -24,9 +24,13 @@ function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
         return ""
     }
 
+    const regex = `/^.*${queryName}.*$/gm`
+    console.log(regex);
+    console.log(regex.match('pikachu'));
+
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = (startIndex + PAGE_SIZE);
-    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))));
+    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))) && regex.match(poke.name.english));
     let pokemonOnPage = pokemon.slice(startIndex, endIndex);
 
     return (
