@@ -15,10 +15,10 @@ img {
 .poke-card
 {
     min-width: 125px;
-    border: 2px solid black;
     border-radius: 3px;
     margin: 5px;
     padding: 5px 0;
+    box-shadow: 0 0 10px #00000033;
 }
 
 .id {
@@ -35,4 +35,5 @@ img {
     display: flex;
     align-content: center;
     justify-content: center;
+    filter: drop-shadow(10px 5px 4px #00000044);
 }
