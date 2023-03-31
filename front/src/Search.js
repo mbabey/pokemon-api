@@ -30,7 +30,8 @@ function Search({ selectedTypes, setSelectedTypes, setQueryName }) {
     }
 
     return (
-        <div>
+        <div className={"search-field-container"}>
+            <h4>Select Types to Filter by Type</h4>
             <div className={"type-checkboxes-container"}>
                 {
                     types.map(type =>
@@ -45,7 +46,8 @@ function Search({ selectedTypes, setSelectedTypes, setQueryName }) {
                         </div>)
                 }
             </div>
-            <div>
+            <h4>Enter a Name to Query by Name</h4>
+            <div className={"query-name-container"}>
                 <input
                     type="text"
                     id="query-name"
