@@ -1,3 +1,44 @@
+:root {
+    /*  Hex Colours for Types: https://www.epidemicjohto.com/t882-type-colors-hex-colors */
+    --Normal-Type: #A8A77A;
+    --Fire-Type: #EE8130;
+    --Water-Type: #6390F0;
+    --Electric-Type: #F7D02C;
+    --Grass-Type: #7AC74C;
+    --Ice-Type: #96D9D6;
+    --Fighting-Type: #C22E28;
+    --Poison-Type: #A33EA1;
+    --Ground-Type: #E2BF65;
+    --Flying-Type: #A98FF3;
+    --Psychic-Type: #F95587;
+    --Bug-Type: #A6B91A;
+    --Rock-Type: #B6A136;
+    --Ghost-Type: #735797;
+    --Dragon-Type: #6F35FC;
+    --Dark-Type: #705746;
+    --Steel-Type: #B7B7CE;
+    --Fairy-Type: #D685AD;
+
+    --Normal-Type-Half: #A8A77A77;
+    --Fire-Type-Half: #EE813077;
+    --Water-Type-Half: #6390F077;
+    --Electric-Type-Half: #F7D02C77;
+    --Grass-Type-Half: #7AC74C77;
+    --Ice-Type-Half: #96D9D677;
+    --Fighting-Type-Half: #C22E2877;
+    --Poison-Type-Half: #A33EA177;
+    --Ground-Type-Half: #E2BF6577;
+    --Flying-Type-Half: #A98FF377;
+    --Psychic-Type-Half: #F9558777;
+    --Bug-Type-Half: #A6B91A77;
+    --Rock-Type-Half: #B6A13677;
+    --Ghost-Type-Half: #73579777;
+    --Dragon-Type-Half: #6F35FC77;
+    --Dark-Type-Half: #70574677;
+    --Steel-Type-Half: #B7B7CE77;
+    --Fairy-Type-Half: #D685AD77;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-image: url('../public/forest-background-2.png');
@@ -84,4 +125,114 @@ img {
 
 .buttonActive {
     background-color: green;
+}
+
+.Normal:hover {
+    background-color: var(--Normal-Type-Half);
+}
+.Fire:hover {
+    background-color: var(--Fire-Type-Half);
+}
+.Water:hover {
+    background-color: var(--Water-Type-Half);
+}
+.Electric:hover {
+    background-color: var(--Electric-Type-Half);
+}
+.Grass:hover {
+    background-color: var(--Grass-Type-Half);
+}
+.Ice:hover {
+    background-color: var(--Ice-Type-Half);
+}
+.Fighting:hover {
+    background-color: var(--Fighting-Type-Half);
+}
+.Poison:hover {
+    background-color: var(--Poison-Type-Half);
+}
+.Ground:hover {
+    background-color: var(--Ground-Type-Half);
+}
+.Flying:hover {
+    background-color: var(--Flying-Type-Half);
+}
+.Psychic:hover {
+    background-color: var(--Psychic-Type-Half);
+}
+.Bug:hover {
+    background-color: var(--Bug-Type-Half);
+}
+.Rock:hover {
+    background-color: var(--Rock-Type-Half);
+}
+.Ghost:hover {
+    background-color: var(--Ghost-Type-Half);
+}
+.Dragon:hover {
+    background-color: var(--Dragon-Type-Half);
+}
+.Dark:hover {
+    background-color: var(--Dark-Type-Half);
+}
+.Steel:hover {
+    background-color: var(--Steel-Type-Half);
+}
+.Fairy:hover {
+    background-color: var(--Fairy-Type-Half);
+}
+
+.Normal.child-checked {
+    background-color: var(--Normal-Type);
+}
+.Fire.child-checked {
+    background-color: var(--Fire-Type);
+}
+.Water.child-checked {
+    background-color: var(--Water-Type);
+}
+.Electric.child-checked {
+    background-color: var(--Electric-Type);
+}
+.Grass.child-checked {
+    background-color: var(--Grass-Type);
+}
+.Ice.child-checked {
+    background-color: var(--Ice-Type);
+}
+.Fighting.child-checked {
+    background-color: var(--Fighting-Type);
+}
+.Poison.child-checked {
+    background-color: var(--Poison-Type);
+}
+.Ground.child-checked {
+    background-color: var(--Ground-Type);
+}
+.Flying.child-checked {
+    background-color: var(--Flying-Type);
+}
+.Psychic.child-checked {
+    background-color: var(--Psychic-Type);
+}
+.Bug.child-checked {
+    background-color: var(--Bug-Type);
+}
+.Rock.child-checked {
+    background-color: var(--Rock-Type);
+}
+.Ghost.child-checked {
+    background-color: var(--Ghost-Type);
+}
+.Dragon.child-checked {
+    background-color: var(--Dragon-Type);
+}
+.Dark.child-checked {
+    background-color: var(--Dark-Type);
+}
+.Steel.child-checked {
+    background-color: var(--Steel-Type);
+}
+.Fairy.child-checked {
+    background-color: var(--Fairy-Type);
 }
