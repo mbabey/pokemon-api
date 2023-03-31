@@ -10,7 +10,7 @@ function Pagination({ pokemon, PAGE_SIZE, setCurrentPage, currentPage }) {
   return (
     <div>
         {
-            (currentPage != 1) && <button onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>
+            (currentPage !== 1) && <button onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>
         }
         {
             Array.from({ length: pokePages }, (_, i) => i)
@@ -24,7 +24,7 @@ function Pagination({ pokemon, PAGE_SIZE, setCurrentPage, currentPage }) {
             })
         }
         {
-            (currentPage != pokePages) && <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+            (currentPage !== pokePages) && <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
         }
     </div>
   )
