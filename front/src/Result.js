@@ -1,17 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import Page from './Page';
 import Pagination from './Pagination';
 
 function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
     const [pokedex, setPokedex] = useState([]);
-    // const [pokemon, setPokemon] = useState([]);
-    const startIndex = (currentPage - 1) * PAGE_SIZE;
-    const endIndex = (startIndex + PAGE_SIZE);
-
-    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))));
-    let pokemonOnPage = pokemon.slice(startIndex, endIndex);
 
     useEffect(() => {
         async function fetchData() {
@@ -30,6 +23,12 @@ function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
         }
         return ""
     }
+
+    const startIndex = (currentPage - 1) * PAGE_SIZE;
+    const endIndex = (startIndex + PAGE_SIZE);
+    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))));
+    let pokemonOnPage = pokemon.slice(startIndex, endIndex);
+
     return (
         <div>
             <div className={"images"}>
@@ -54,25 +53,3 @@ function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
 }
 
 export default Result
-
-
-                // setPokemon(pokedex.filter(poke => {
-                //     selectedTypes.includes(poke.type)
-                // }))
-
-                            // console.log(pokedex.map(poke => {
-                //     if (selectedTypes.length === 0) {
-                //         return null;
-                //     }
-                //     if (selectedTypes.every((type => poke.type.includes(type)))) {
-                //         return poke;
-                //     }
-                //     return poke;
-                // }))
-
-            //     <Page
-            //     pokemon={pokemon}
-            //     PAGE_SIZE={PAGE_SIZE}
-            //     currentPage={currentPage}
-            // />
-
