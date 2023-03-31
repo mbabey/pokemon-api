@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  <script defer="" src="./React App_files/bundle.js"></script><style>body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(http://localhost:3000/static/media/forest-background-2.0e9d7a02ee8f86293aa3.png);
+    background-repeat: repeat;
+}
+
+.type-checkboxes-container {
+    background-color: #00000033;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+}
+
+.type-checkbox {
+    border: 1px solid black;
+    margin: 1px;
+    position: relative;
+}
+
+.type-checkbox:hover {
+    background-color: #00000044;
+}
+
+.type-checkbox>input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+}
+
+.type-checkbox>input:hover {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.type-checkbox>input:checked~span {
+    background: green;
+}
+
+.type-checkbox>label{
+    position: relative;
+    transform: translateY(50px);
+}
+
+.poke-card {
+    min-width: 125px;
+    border-radius: 7px;
+    margin: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 0 10px #00000033;
+    background-color: #ffffff;
+}
+
+.id,
+.name {
+    background-color: rgba(255, 0, 0, 0.28);
+}
+
+.id {
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.name {
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.pic {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    filter: drop-shadow(10px 5px 4px #00000044);
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonActive {
+    background-color: green;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSx5Q0FBeUM7SUFDekMseURBQTBEO0lBQzFELHlCQUF5QjtBQUM3Qjs7QUFFQTtJQUNJLDJCQUEyQjtJQUMzQixhQUFhO0lBQ2IscUNBQXFDO0FBQ3pDOztBQUVBO0lBQ0ksdUJBQXVCO0lBQ3ZCLFdBQVc7SUFDWCxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSwyQkFBMkI7QUFDL0I7O0FBRUE7SUFDSSxXQUFXO0lBQ1gsWUFBWTtJQUNaLFVBQVU7SUFDVixTQUFTO0FBQ2I7O0FBRUE7SUFDSSxXQUFXO0lBQ1gsWUFBWTtJQUNaLFVBQVU7SUFDVixlQUFlO0FBQ25COztBQUVBO0lBQ0ksaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLDJCQUEyQjtBQUMvQjs7QUFFQTtJQUNJLGdCQUFnQjtJQUNoQixrQkFBa0I7SUFDbEIsV0FBVztJQUNYLG1CQUFtQjtJQUNuQiw4QkFBOEI7SUFDOUIseUJBQXlCO0FBQzdCOztBQUVBOztJQUVJLHVDQUF1QztBQUMzQzs7QUFFQTtJQUNJLGlCQUFpQjtJQUNqQixrQkFBa0I7SUFDbEIsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLGdDQUFnQztJQUNoQyxvQkFBb0I7SUFDcEIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHFCQUFxQjtJQUNyQix1QkFBdUI7SUFDdkIsMkNBQTJDO0FBQy9DOztBQUVBO0lBQ0ksWUFBWTtJQUNaLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksdUJBQXVCO0FBQzNCIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gICAgZm9udC1mYW1pbHk6IEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XG4gICAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCcuLi9wdWJsaWMvZm9yZXN0LWJhY2tncm91bmQtMi5wbmcnKTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogcmVwZWF0O1xufVxuXG4udHlwZS1jaGVja2JveGVzLWNvbnRhaW5lciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwMDAwMDMzO1xuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoMywgMzMlKTtcbn1cblxuLnR5cGUtY2hlY2tib3gge1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIG1hcmdpbjogMXB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnR5cGUtY2hlY2tib3g6aG92ZXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA0NDtcbn1cblxuLnR5cGUtY2hlY2tib3g+aW5wdXQge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICBvcGFjaXR5OiAwO1xuICAgIG1hcmdpbjogMDtcbn1cblxuLnR5cGUtY2hlY2tib3g+aW5wdXQ6aG92ZXIge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICBvcGFjaXR5OiAwO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLnR5cGUtY2hlY2tib3g+aW5wdXQ6Y2hlY2tlZH5zcGFuIHtcbiAgICBiYWNrZ3JvdW5kOiBncmVlbjtcbn1cblxuLnR5cGUtY2hlY2tib3g+bGFiZWx7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSg1MHB4KTtcbn1cblxuLnBva2UtY2FyZCB7XG4gICAgbWluLXdpZHRoOiAxMjVweDtcbiAgICBib3JkZXItcmFkaXVzOiA3cHg7XG4gICAgbWFyZ2luOiA1cHg7XG4gICAgcGFkZGluZy1ib3R0b206IDVweDtcbiAgICBib3gtc2hhZG93OiAwIDAgMTBweCAjMDAwMDAwMzM7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZmZmZjtcbn1cblxuLmlkLFxuLm5hbWUge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAwLCAwLCAwLjI4KTtcbn1cblxuLmlkIHtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgcGFkZGluZy10b3A6IDVweDtcbn1cblxuLm5hbWUge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgIzAwMDAwMDtcbiAgICBwYWRkaW5nLWJvdHRvbTogMTBweDtcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xufVxuXG4ucGljIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBmaWx0ZXI6IGRyb3Atc2hhZG93KDEwcHggNXB4IDRweCAjMDAwMDAwNDQpO1xufVxuXG5pbWcge1xuICAgIHdpZHRoOiAxMDBweDtcbiAgICBoZWlnaHQ6IGF1dG87XG59XG5cbi5pbWFnZXMge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcbn1cblxuLmJ1dHRvbkFjdGl2ZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG59Il0sInNvdXJjZVJvb3QiOiIifQ== */</style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div><div class="type-checkboxes-container"><div class="type-checkbox"><input type="checkbox" id="Normal" value="Normal"><label for="Normal">Normal</label></div><div class="type-checkbox"><input type="checkbox" id="Fighting" value="Fighting"><label for="Fighting">Fighting</label></div><div class="type-checkbox"><input type="checkbox" id="Flying" value="Flying"><label for="Flying">Flying</label></div><div class="type-checkbox"><input type="checkbox" id="Poison" value="Poison"><label for="Poison">Poison</label></div><div class="type-checkbox"><input type="checkbox" id="Ground" value="Ground"><label for="Ground">Ground</label></div><div class="type-checkbox"><input type="checkbox" id="Rock" value="Rock"><label for="Rock">Rock</label></div><div class="type-checkbox"><input type="checkbox" id="Bug" value="Bug"><label for="Bug">Bug</label></div><div class="type-checkbox"><input type="checkbox" id="Ghost" value="Ghost"><label for="Ghost">Ghost</label></div><div class="type-checkbox"><input type="checkbox" id="Steel" value="Steel"><label for="Steel">Steel</label></div><div class="type-checkbox"><input type="checkbox" id="Fire" value="Fire"><label for="Fire">Fire</label></div><div class="type-checkbox"><input type="checkbox" id="Water" value="Water"><label for="Water">Water</label></div><div class="type-checkbox"><input type="checkbox" id="Grass" value="Grass"><label for="Grass">Grass</label></div><div class="type-checkbox"><input type="checkbox" id="Electric" value="Electric"><label for="Electric">Electric</label></div><div class="type-checkbox"><input type="checkbox" id="Psychic" value="Psychic"><label for="Psychic">Psychic</label></div><div class="type-checkbox"><input type="checkbox" id="Ice" value="Ice"><label for="Ice">Ice</label></div><div class="type-checkbox"><input type="checkbox" id="Dragon" value="Dragon"><label for="Dragon">Dragon</label></div><div class="type-checkbox"><input type="checkbox" id="Dark" value="Dark"><label for="Dark">Dark</label></div><div class="type-checkbox"><input type="checkbox" id="Fairy" value="Fairy"><label for="Fairy">Fairy</label></div></div><div><input type="text" id="query-name" placeholder="Enter a pokemon&#39;s name to search."></div></div><div><div class="images"><div class="poke-card"><div class="id">#001</div><div class="name">Bulbasaur</div><div class="pic"><img src="./React App_files/001.png" alt="Pokemon 1"></div></div><div class="poke-card"><div class="id">#002</div><div class="name">Ivysaur</div><div class="pic"><img src="./React App_files/002.png" alt="Pokemon 2"></div></div><div class="poke-card"><div class="id">#003</div><div class="name">Venusaur</div><div class="pic"><img src="./React App_files/003.png" alt="Pokemon 3"></div></div><div class="poke-card"><div class="id">#004</div><div class="name">Charmander</div><div class="pic"><img src="./React App_files/004.png" alt="Pokemon 4"></div></div><div class="poke-card"><div class="id">#005</div><div class="name">Charmeleon</div><div class="pic"><img src="./React App_files/005.png" alt="Pokemon 5"></div></div><div class="poke-card"><div class="id">#006</div><div class="name">Charizard</div><div class="pic"><img src="./React App_files/006.png" alt="Pokemon 6"></div></div><div class="poke-card"><div class="id">#007</div><div class="name">Squirtle</div><div class="pic"><img src="./React App_files/007.png" alt="Pokemon 7"></div></div><div class="poke-card"><div class="id">#008</div><div class="name">Wartortle</div><div class="pic"><img src="./React App_files/008.png" alt="Pokemon 8"></div></div><div class="poke-card"><div class="id">#009</div><div class="name">Blastoise</div><div class="pic"><img src="./React App_files/009.png" alt="Pokemon 9"></div></div><div class="poke-card"><div class="id">#010</div><div class="name">Caterpie</div><div class="pic"><img src="./React App_files/010.png" alt="Pokemon 10"></div></div></div><div><button class="buttonActive">1</button><button class="">2</button><button class="">3</button><button class="">4</button><button class="">5</button><button class="">6</button><button>Next</button></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  
+
+</body></html>
