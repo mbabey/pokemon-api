@@ -2,6 +2,7 @@ import Login from "./Login";
 import Search from "./Search";
 import Result from "./Result";
 import { useState } from "react";
+import './style.css'
 
 function App() {
   const PAGE_SIZE = 10;

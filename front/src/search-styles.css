@@ -45,7 +45,9 @@
     background-color: #f0f0f5;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(3, 33.333%);
+    grid-template-columns: repeat(3, calc(33.333% - 5px));
+    gap: 5px;
+    padding-left: 3px;
 }
 
 .type-checkbox {
@@ -53,7 +55,7 @@
     box-shadow: 0 0 5px #00000033;
     border-radius: 10px;
     background-color: #ffffff;
-    margin: 5px;
+    /* margin: 5px; */
     height: 2rem;
     position: relative;
     transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
@@ -197,3 +199,5 @@
 .Fairy.child-checked {
     background-color: var(--Fairy-Type);
 }
+
+
