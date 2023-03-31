@@ -1,10 +1,8 @@
 import React from 'react'
 import './style.css'
 
-function Pagination({ pokedex, PAGE_SIZE, setCurrentPage, currentPage }) {
-    const pokePages = Math.ceil(pokedex.length / PAGE_SIZE);
-    console.log(pokePages);
-    console.log(currentPage);
+function Pagination({ pokemon, PAGE_SIZE, setCurrentPage, currentPage }) {
+    const pokePages = Math.ceil(pokemon.length / PAGE_SIZE);
 
   return (
     <div>

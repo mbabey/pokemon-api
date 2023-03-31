@@ -10,10 +10,8 @@ function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = (startIndex + PAGE_SIZE);
 
-    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type)))).slice(startIndex, endIndex);
-    console.log(pokemon);
-    console.log(startIndex);
-    console.log(endIndex);
+    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))));
+    let pokemonOnPage = pokemon.slice(startIndex, endIndex);
 
     useEffect(() => {
         async function fetchData() {
@@ -36,7 +34,7 @@ function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
         <div>
             <div className={"images"}>
                 {
-                    pokemon.map(poke => {
+                    pokemonOnPage.map(poke => {
                         return (
                             <div key={poke.name.english}>
                                 <img src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${zeroes(poke.id)}${poke.id}.png`} alt={`Pokemon ${poke.id}`}></img>
@@ -46,7 +44,7 @@ function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
                 }
             </div>
             <Pagination
-                pokedex={pokedex}
+                pokemon={pokemon}
                 PAGE_SIZE={PAGE_SIZE}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
