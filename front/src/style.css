@@ -12,14 +12,27 @@ img {
     background-color: green;
 }
 
-.id-name
+.poke-card
 {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    min-width: 125px;
+    border: 2px solid black;
+    border-radius: 3px;
+    margin: 5px;
+    padding: 5px 0;
 }
 
 .id {
-    width: 2rem;
-    text-align:center;
+    font-weight: bold;
+    text-align: center;
+}
+
+.name{
+    text-align: center;
+}
+
+.pic
+{
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
