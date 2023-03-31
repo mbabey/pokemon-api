@@ -24,13 +24,11 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SI
         return ""
     }
 
-    const regex = `/^.*${queryName}.*$/gm`
-    console.log(regex);
-    console.log(regex.match('pikachu'));
-
+    const regex = new RegExp(`^.*${queryName}.*$`, 'im');
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = (startIndex + PAGE_SIZE);
-    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))) && regex.match(poke.name.english));
+    
+    let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))) && (poke.name.english).match(regex));
     let pokemonOnPage = pokemon.slice(startIndex, endIndex);
 
     return (
