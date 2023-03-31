@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Pagination from './Pagination';
+import PokemonCard from './PokemonCard';
 
 function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SIZE }) {
     const [pokedex, setPokedex] = useState([]);
@@ -14,20 +15,10 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SI
         fetchData();
     }, [])
 
-    const zeroes = (id) => {
-        if (id < 10) {
-            return "00"
-        }
-        if (id < 100) {
-            return "0"
-        }
-        return ""
-    }
-
     const regex = new RegExp(`^.*${queryName}.*$`, 'im');
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = (startIndex + PAGE_SIZE);
-    
+
     let pokemon = pokedex.filter(poke => selectedTypes.every((type => poke.type.includes(type))) && (poke.name.english).match(regex));
     let pokemonOnPage = pokemon.slice(startIndex, endIndex);
 
@@ -37,9 +28,10 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SI
                 {
                     pokemonOnPage.map(poke => {
                         return (
-                            <div key={poke.name.english}>
-                                <img src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${zeroes(poke.id)}${poke.id}.png`} alt={`Pokemon ${poke.id}`}></img>
-                            </div>
+                            <PokemonCard
+                                key={poke.name.english}
+                                poke={poke}
+                            />
                         )
                     })
                 }
