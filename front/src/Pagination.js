@@ -1,12 +1,11 @@
 import React from 'react'
 import './style.css'
 
-function Pagination({ pokemon, PAGE_SIZE, setCurrentPage, currentPage }) {
-    const pokePages = Math.ceil(pokemon.length / PAGE_SIZE);
+function Pagination({ pokedex, PAGE_SIZE, setCurrentPage, currentPage }) {
+    const pokePages = Math.ceil(pokedex.length / PAGE_SIZE);
+    console.log(pokePages);
+    console.log(currentPage);
 
-    // display current - 5
-
-    
   return (
     <div>
         {

@@ -4,7 +4,9 @@ import Result from "./Result";
 import { useState } from "react";
 
 function App() {
+  const PAGE_SIZE = 10;
   const [selectedTypes, setSelectedTypes] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <>
@@ -15,6 +17,9 @@ function App() {
       />
       <Result
         selectedTypes={selectedTypes}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        PAGE_SIZE={PAGE_SIZE}
       />
     </>
   );

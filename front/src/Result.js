@@ -4,11 +4,9 @@ import { useState, useEffect } from 'react'
 import Page from './Page';
 import Pagination from './Pagination';
 
-function Result({ selectedTypes }) {
-    const PAGE_SIZE = 10;
+function Result({ selectedTypes, currentPage, setCurrentPage, PAGE_SIZE }) {
     const [pokedex, setPokedex] = useState([]);
     // const [pokemon, setPokemon] = useState([]);
-    const [currentPage, setCurrentPage] = useState([]);
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = (startIndex + PAGE_SIZE);
 
@@ -48,7 +46,7 @@ function Result({ selectedTypes }) {
                 }
             </div>
             <Pagination
-                pokemon={pokemon}
+                pokedex={pokedex}
                 PAGE_SIZE={PAGE_SIZE}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
