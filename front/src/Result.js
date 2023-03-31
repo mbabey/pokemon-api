@@ -24,7 +24,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SI
 
     return (
         <div>
-            <div className={"images"}>
+            <div className={"pokemon-card-container"}>
                 {
                     pokemonOnPage.map(poke => {
                         return (

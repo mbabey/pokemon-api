@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import './style.css'
+import './search-styles.css'
 
 function Search({ selectedTypes, setSelectedTypes, setQueryName }) {
     const [types, setTypes] = useState([]);
