@@ -13,6 +13,7 @@ function Login({ SERVER_ADDRESS }) {
     const [accessToken, setAccessToken] = useState(null);
     const [refreshToken, setRefreshToken] = useState(null);
     const [user, setUser] = useState(null);
+    const [showRegisterForm, setShowRegisterForm] = useState(false);
 
     const onLoginHandle = async (e) => {
         e.preventDefault();
@@ -58,7 +59,7 @@ function Login({ SERVER_ADDRESS }) {
             }
         }
     }
-    
+
     const onLogoutHandle = async (e) => {
         e.preventDefault();
         try {
@@ -73,7 +74,7 @@ function Login({ SERVER_ADDRESS }) {
     return (
         <div>
             {
-                accessToken && 
+                accessToken &&
                 <div className='logout-button'>
                     <button onClick={onLogoutHandle} >Logout</button>
                 </div>
@@ -94,37 +95,42 @@ function Login({ SERVER_ADDRESS }) {
             {
                 !accessToken &&
                 (<div>
-                    <form onSubmit={onLoginHandle} className='login-form' >
-                        <input
-                            type="text"
-                            placeholder="username"
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button type="submit">Login</button>
-                    </form>
-                    <form onSubmit={onCreateAccountHandle} className='create-account-form' >
-                        <input
-                            type="text"
-                            placeholder="username"
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button type="submit">Create Account</button>
-                    </form>
+                    <button onClick={() => setShowRegisterForm(!showRegisterForm)}>{(showRegisterForm) ? "Back" : "Register"}</button>
+                    {
+                        (showRegisterForm) ?
+                            <form onSubmit={onCreateAccountHandle} className='create-account-form' >
+                                <input
+                                    type="text"
+                                    placeholder="username"
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="email"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <button type="submit">Create Account</button>
+                            </form>
+                            :
+                            <form onSubmit={onLoginHandle} className='login-form' >
+                                <input
+                                    type="text"
+                                    placeholder="username"
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <button type="submit">Login</button>
+                            </form>
+                    }
                 </div>)
             }
 
