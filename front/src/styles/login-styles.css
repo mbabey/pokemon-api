@@ -1,0 +1,31 @@
+.forms-container 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+}
+
+.create-account-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-account-form>button,
+.login-form>button {
+    width: 50%;
+    margin: auto;
+}
+
+.show-register-form-button {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.show-register-form-button>button {
+    margin: auto;
+}

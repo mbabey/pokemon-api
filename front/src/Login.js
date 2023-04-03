@@ -94,8 +94,7 @@ function Login({ SERVER_ADDRESS }) {
             }
             {
                 !accessToken &&
-                (<div>
-                    <button onClick={() => setShowRegisterForm(!showRegisterForm)}>{(showRegisterForm) ? "Back" : "Register"}</button>
+                (<div className="forms-container">
                     {
                         (showRegisterForm) ?
                             <form onSubmit={onCreateAccountHandle} className='create-account-form' >
@@ -114,7 +113,7 @@ function Login({ SERVER_ADDRESS }) {
                                     placeholder="password"
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <button type="submit">Create Account</button>
+                                <button type="submit">Create Account and Login</button>
                             </form>
                             :
                             <form onSubmit={onLoginHandle} className='login-form' >
@@ -131,6 +130,9 @@ function Login({ SERVER_ADDRESS }) {
                                 <button type="submit">Login</button>
                             </form>
                     }
+                    <div className="show-register-form-button">
+                        <button onClick={() => setShowRegisterForm(!showRegisterForm)} >{(showRegisterForm) ? "Back" : "Register"}</button>
+                    </div>
                 </div>)
             }
 
