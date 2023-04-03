@@ -89,7 +89,7 @@ app.post('/login', asyncWrapper(async (req, res) => {
   if (!isPasswordCorrect)
     throw new PokemonAuthError("Password is incorrect")
 
-  const accessToken = "Bearer " + jwt.sign({ user: user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' })
+  const accessToken = "Bearer " + jwt.sign({ user: user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' })
   const refreshToken = "Refresh " + jwt.sign({ user: user }, process.env.REFRESH_TOKEN_SECRET)
 
   const logged_in_user = await userModel.findOneAndUpdate(

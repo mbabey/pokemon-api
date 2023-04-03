@@ -11,7 +11,7 @@ function Login({ SERVER_ADDRESS }) {
     const [email, setEmail] = useState('');
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState(null);
 
     const onLoginHandle = async (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ function Login({ SERVER_ADDRESS }) {
             });
         console.log(res.data);
         setUser(res.data);
-        const authorization_tokens = res.headers('authorization').split(',');
+        const authorization_tokens = res.headers['authorization'].split(',');
         setAccessToken(authorization_tokens[1]);
         setRefreshToken(authorization_tokens[0]);
     }
@@ -42,7 +42,8 @@ function Login({ SERVER_ADDRESS }) {
     return (
         <div>
             {
-                accessToken && user?.role === 'user' && <UserPage />
+                accessToken && user?.role === 'user' && 
+                <UserPage />
             }
             {
                 accessToken && user?.role === 'admin' &&
