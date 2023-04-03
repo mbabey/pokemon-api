@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState } from 'react';
 import Dashboard from './Dashboard';
+import UserPage from './UserPage';
 
 function Login() {
 
@@ -28,6 +29,9 @@ function Login() {
     return (
         <div>
             {
+                accessToken && user?.role === 'user' && <UserPage />
+            }
+            {
                 accessToken && user?.role === 'admin' &&
                 <Dashboard
                     accessToken={accessToken}
@@ -48,6 +52,7 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <button type="submit">Login</button>
+                    <button onClick={}>Create Account</button>
                 </form>
             }
 
