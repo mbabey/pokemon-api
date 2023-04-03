@@ -50,11 +50,18 @@
 .login-form>input {
     margin: 1.5px auto;
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #000;
     padding: 3px;
     outline: none;
     background: none;
     transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+    
+}
+
+.create-account-form>input::placeholder,
+.login-form>input::placeholder
+{
+    color: #00000099;
 }
 
 .create-account-form>input:focus,
