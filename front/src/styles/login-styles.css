@@ -118,6 +118,17 @@
     transform: translate(-50%, -50%);
 }
 
-/* .show-register-form-button>button {
-    margin: auto;
-} */
+.show-register-form-button>button {
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.show-register-form-button>button:hover {
+    border-bottom: 5px solid #7f8c8d86;
+    border-left: 1px solid #7f8c8d86;
+    border-right: 1px solid #7f8c8d86;
+    border-top: 0.5px solid #7f8c8d86;
+}
