@@ -15,12 +15,15 @@
 }
 
 .stats-close {
-    /* color: rgb(255, 0, 0); */
     font-weight: bolder;
     font-size: 1.5rem;
     position: relative;
     left: 95%;
     font-family: 'Courier New', Courier, monospace;
+}
+
+.stats-close:hover{
+    cursor: pointer;
 }
 
 .stats-id,

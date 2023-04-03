@@ -45,7 +45,10 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SI
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
             />
-            <PokemonStats selectedPokemon={selectedPokemon} />
+            <PokemonStats
+                selectedPokemon={selectedPokemon}
+                setSelectedPokemon={setSelectedPokemon}
+            />
         </div>
     )
 }

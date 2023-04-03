@@ -1,7 +1,7 @@
 import React from 'react'
 import './pokemon-stats-styles.css'
 
-function PokemonStats({ selectedPokemon }) {
+function PokemonStats({ selectedPokemon, setSelectedPokemon }) {
 
     const zeroes = (id) => {
         if (id < 10) {
@@ -20,7 +20,7 @@ function PokemonStats({ selectedPokemon }) {
     return (
         selectedPokemon &&
         <div className={"pokemon-stats"}>
-            <span className={"stats-close"}>X</span>
+            <span className={"stats-close"} onClick={() => setSelectedPokemon(null)} >X</span>
             <div className={"stats-id"}>#{zeroes(selectedPokemon.id)}{selectedPokemon.id}</div>
             <div className={"stats-name"}>{selectedPokemon.name.english}</div>
             <div className={"stats-pic"}>
