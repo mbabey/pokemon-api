@@ -100,38 +100,38 @@ function Login({ SERVER_ADDRESS }) {
                             <form onSubmit={onCreateAccountHandle} className='create-account-form' >
                                 <input
                                     type="text"
-                                    placeholder="username"
+                                    placeholder="Username"
                                     onChange={(e) => setUsername(e.target.value)}
                                 />
                                 <input
                                     type="text"
-                                    placeholder="email"
+                                    placeholder="Email"
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <input
                                     type="text"
-                                    placeholder="password"
+                                    placeholder="Password"
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <button type="submit">Create Account and Login</button>
+                                <button type="submit">Join!</button>
                             </form>
                             :
                             <form onSubmit={onLoginHandle} className='login-form' >
                                 <input
                                     type="text"
-                                    placeholder="username"
+                                    placeholder="Username"
                                     onChange={(e) => setUsername(e.target.value)}
                                 />
                                 <input
                                     type="text"
-                                    placeholder="password"
+                                    placeholder="Password"
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <button type="submit">Login</button>
+                                <button type="submit">Login!</button>
                             </form>
                     }
                     <div className="show-register-form-button">
-                        <button onClick={() => setShowRegisterForm(!showRegisterForm)} >{(showRegisterForm) ? "Back" : "Register"}</button>
+                        <button onClick={() => setShowRegisterForm(!showRegisterForm)} >{(showRegisterForm) ? "I already have an account" : "I don't have an account"}</button>
                     </div>
                     <div className='centerpiece'></div>
                 </div>)

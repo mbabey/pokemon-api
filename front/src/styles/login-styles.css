@@ -56,28 +56,42 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 10%;
+    margin-top: 7%;
     width: 200px;
+}
+
+.create-account-form>input,
+.login-form>input
+{
+    margin: 1.5px auto;
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 3px;
+    outline: none;
+    background: none;
+    transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.create-account-form>input:focus,
+.login-form>input:focus{
+    transform: scale(1.1);
 }
 
 .create-account-form>input:nth-child(1),
 .login-form>input:nth-child(1)
 {
     width: 150px;
-    margin: auto;
 }
 
 .create-account-form>input:nth-child(2)
 {
     width: 175px;
-    margin: auto;
 }
 
 .create-account-form>input:nth-child(3),
 .login-form>input:nth-child(2)
 {
     width: 200px;
-    margin: auto;
 }
 
 
