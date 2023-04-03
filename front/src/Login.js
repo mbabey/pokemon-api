@@ -40,7 +40,7 @@ function Login({ SERVER_ADDRESS }) {
     const onCreateAccountHandle = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${SERVER_ADDRESS}/register`,
+            await axios.post(`${SERVER_ADDRESS}/register`,
                 {
                     username: username,
                     email: email,
@@ -58,8 +58,23 @@ function Login({ SERVER_ADDRESS }) {
         }
     }
     
+    const onLogoutHandle = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.get(`${SERVER_ADDRESS}/logout?id=${refreshToken}`);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <div>
+            {
+                accessToken && 
+                <div>
+                    <button onClick={onLogoutHandle} >Logout</button>
+                    </div>
+            }
             {
                 accessToken && user?.role === 'user' &&
                 <UserPage />
