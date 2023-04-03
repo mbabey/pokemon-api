@@ -113,6 +113,11 @@ app.get('/logout', asyncWrapper(async (req, res) => {
   res.send(user)
 }))
 
+app.use(authAdmin())
+app.get('/report', async (req, res) => {
+
+})
+
 module.exports = {
   app: app,
   start: start(),
