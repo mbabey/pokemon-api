@@ -55,12 +55,41 @@
 .login-form {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+    margin-top: 10%;
+    width: 200px;
 }
+
+.create-account-form>input:nth-child(1),
+.login-form>input:nth-child(1)
+{
+    width: 150px;
+    margin: auto;
+}
+
+.create-account-form>input:nth-child(2)
+{
+    width: 175px;
+    margin: auto;
+}
+
+.create-account-form>input:nth-child(3),
+.login-form>input:nth-child(2)
+{
+    width: 200px;
+    margin: auto;
+}
+
+
 
 .create-account-form>button,
 .login-form>button {
     width: 50%;
     margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .show-register-form-button {
@@ -68,6 +97,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* .show-register-form-button>button {
