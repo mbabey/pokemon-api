@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const userModel = require("./userModel.js")
 const logModel = require("./logModel.js")
+const { authAdmin } = require('./middlewares.js')
 const { asyncWrapper } = require("./asyncWrapper.js")
 const { connectDB } = require("./connectDB.js")
 const dotenv = require("dotenv")
@@ -113,9 +114,10 @@ app.get('/logout', asyncWrapper(async (req, res) => {
   res.send(user)
 }))
 
-app.use(authAdmin())
+app.use(authAdmin)
 app.get('/report', async (req, res) => {
-
+  const id = req.query.id;
+  res.send(`Report ${id}`);
 })
 
 module.exports = {
