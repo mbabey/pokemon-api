@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 
-function Report({ id, accessToken, setAccessToken, refreshToken }) {
+function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }) {
 
     const [reportTable, setReportTable] = React.useState(null)
 
@@ -13,7 +13,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken }) {
         const currentTime = Date.now() / 1000;
         if (decoded.exp < currentTime) {
             console.log("token expired");
-            const res = await axios.get('http://localhost:5010/requestNewAccessToken',
+            const res = await axios.get(`${SERVER_ADDRESS}/requestNewAccessToken`,
                 {
                     headers: {
                         'Authorization': refreshToken
@@ -31,7 +31,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken }) {
     useEffect(() => {
         async function fetchReport() {
             const res = await axiosToBeIntercepted.get(
-                `http://localhost:5010/report?id=${id}`,
+                `${SERVER_ADDRESS}/report?id=${id}`,
                 {
                     headers: {
                         "Authorization": accessToken

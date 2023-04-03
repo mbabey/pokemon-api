@@ -7,7 +7,7 @@ import {
     Link
 } from "react-router-dom";
 
-function Dashboard({ accessToken, setAccessToken, refreshToken }) {
+function Dashboard({ accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }) {
     return (
         <div>
             <ul>
@@ -17,9 +17,9 @@ function Dashboard({ accessToken, setAccessToken, refreshToken }) {
             </ul>
 
             <Routes>
-                <Route path="/report/1" element={<Report id={1} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />} />
-                <Route path="/report/2" element={<Report id={2} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />} />
-                <Route path="/report/3" element={<Report id={3} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} />} />
+                <Route path="/report/1" element={<Report id={1} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS}/>} />
+                <Route path="/report/2" element={<Report id={2} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS}/>} />
+                <Route path="/report/3" element={<Report id={3} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS}/>} />
             </Routes>
         </div>
     )

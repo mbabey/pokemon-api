@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Dashboard from './Dashboard';
 import UserPage from './UserPage';
 
-function Login() {
+function Login({ SERVER_ADDRESS }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -12,9 +12,9 @@ function Login() {
     const [refreshToken, setRefreshToken] = useState('');
     const [user, setUser] = useState('');
 
-    const onClickHandle = async (e) => {
+    const onLoginHandle = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:5000/login',
+        const res = await axios.post(`${SERVER_ADDRESS}/login`,
             {
                 username: username,
                 password: password
@@ -24,6 +24,15 @@ function Login() {
         const authorization_tokens = res.headers('authorization').split(',');
         setAccessToken(authorization_tokens[1]);
         setRefreshToken(authorization_tokens[0]);
+    }
+
+    const onCreateAccountHandle = async (e) => {
+        const res = await axios.post(`${SERVER_ADDRESS}/register`,
+        {
+            username: username,
+            password: password
+        });
+        console.log(res.data);
     }
 
     return (
@@ -37,10 +46,11 @@ function Login() {
                     accessToken={accessToken}
                     setAccessToken={setAccessToken}
                     refreshToken={refreshToken}
+                    SERVER_ADDRESS={SERVER_ADDRESS}
                 />
             }
             {
-                !accessToken && <form onSubmit={onClickHandle}>
+                !accessToken && <form onSubmit={onLoginHandle}>
                     <input
                         type="text"
                         placeholder="username"
@@ -52,7 +62,7 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <button type="submit">Login</button>
-                    <button onClick={}>Create Account</button>
+                    <button onClick={onCreateAccountHandle}>Create Account</button>
                 </form>
             }
 
