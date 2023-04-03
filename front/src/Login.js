@@ -15,34 +15,51 @@ function Login({ SERVER_ADDRESS }) {
 
     const onLoginHandle = async (e) => {
         e.preventDefault();
-        const res = await axios.post(`${SERVER_ADDRESS}/login`,
-            {
-                username: username,
-                password: password
-            });
-        console.log(res.data);
-        setUser(res.data);
-        const authorization_tokens = res.headers['authorization'].split(',');
-        setAccessToken(authorization_tokens[1]);
-        setRefreshToken(authorization_tokens[0]);
+        try {
+            const res = await axios.post(`${SERVER_ADDRESS}/login`,
+                {
+                    username: username,
+                    password: password
+                });
+            console.log(res.data);
+            console.log(res);
+            setUser(res.data);
+            const authorization_tokens = res.headers['authorization'].split(',');
+            setAccessToken(authorization_tokens[1]);
+            setRefreshToken(authorization_tokens[0]);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     const onCreateAccountHandle = async (e) => {
         e.preventDefault();
-        const res = await axios.post(`${SERVER_ADDRESS}/register`,
+        try {
+            const res = await axios.post(`${SERVER_ADDRESS}/register`,
+                {
+                    username: username,
+                    email: email,
+                    password: password
+                });
+            console.log(res.data);
+            console.log(res);
+            onLoginHandle(e);
+        } catch (err) {
+            if (err.response.data.search('username') != -1)
             {
-                username: username,
-                email: email,
-                password: password
-            });
-        console.log(res.data);
-        onLoginHandle(e);
+                console.log("Username taken.");
+            }
+            if (err.response.data.search('email') != -1)
+            {
+                console.log("Email taken.");
+            }
+        }
     }
 
     return (
         <div>
             {
-                accessToken && user?.role === 'user' && 
+                accessToken && user?.role === 'user' &&
                 <UserPage />
             }
             {
