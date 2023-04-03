@@ -4,7 +4,7 @@ import './style.css'
 function App() {
 
   const PORT = 5011;
-  const SERVER_ADDRESS = `http://http://localhost:${PORT}`
+  const SERVER_ADDRESS = `http://localhost:${PORT}`
 
   return (
     <>

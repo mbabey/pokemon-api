@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "appServer.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --runInBand"
+    "test": "jest --detectOpenHandles --runInBand",
+    "start": "nodemon authServer.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.2",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.22",
     "progress": "^2.0.3",
     "supertest": "^6.3.3"
   },

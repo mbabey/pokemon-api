@@ -8,6 +8,7 @@ function Login({ SERVER_ADDRESS }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
     const [user, setUser] = useState('');
@@ -27,12 +28,15 @@ function Login({ SERVER_ADDRESS }) {
     }
 
     const onCreateAccountHandle = async (e) => {
+        e.preventDefault();
         const res = await axios.post(`${SERVER_ADDRESS}/register`,
-        {
-            username: username,
-            password: password
-        });
+            {
+                username: username,
+                email: email,
+                password: password
+            });
         console.log(res.data);
+        onLoginHandle(e);
     }
 
     return (
@@ -50,20 +54,40 @@ function Login({ SERVER_ADDRESS }) {
                 />
             }
             {
-                !accessToken && <form onSubmit={onLoginHandle}>
-                    <input
-                        type="text"
-                        placeholder="username"
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button type="submit">Login</button>
-                    <button onClick={onCreateAccountHandle}>Create Account</button>
-                </form>
+                !accessToken &&
+                (<div>
+                    <form onSubmit={onLoginHandle}>
+                        <input
+                            type="text"
+                            placeholder="username"
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <button type="submit">Login</button>
+                    </form>
+                    <form onSubmit={onCreateAccountHandle}>
+                        <input
+                            type="text"
+                            placeholder="username"
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <button type="submit">Create Account</button>
+                    </form>
+                </div>)
             }
 
         </div>
