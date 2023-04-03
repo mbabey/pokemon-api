@@ -13,6 +13,10 @@ function PokemonStats({ selectedPokemon }) {
         return ""
     }
 
+    const calculateTotal = (base) => {
+        return base["HP"] + base["Attack"] + base["Defense"] + base["Sp. Attack"] + base["Sp. Defense"] + base["Speed"];
+    }
+
     return (
         selectedPokemon &&
         <div className={"pokemon-stats"}>
@@ -22,13 +26,13 @@ function PokemonStats({ selectedPokemon }) {
                 <img src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${zeroes(selectedPokemon.id)}${selectedPokemon.id}.png`} alt={`Pokemon #${selectedPokemon.id}: ${selectedPokemon.name.english}`}></img>
             </div>
             <div className={"stats-block"}>
-                <div className={"stat total"}></div>
-                <div className={"stat hp"}></div>
-                <div className={"stat attack"}></div>
-                <div className={"stat defense"}></div>
-                <div className={"stat sp-attack"}></div>
-                <div className={"stat sp-defense"}></div>
-                <div className={"stat speed"}></div>
+                <div className={"stat total"}>{calculateTotal(selectedPokemon.base)}</div>
+                <div className={"stat hp"}>{selectedPokemon.base["HP"]}</div>
+                <div className={"stat attack"}>{selectedPokemon.base["Attack"]}</div>
+                <div className={"stat defense"}>{selectedPokemon.base["Defense"]}</div>
+                <div className={"stat sp-attack"}>{selectedPokemon.base["Sp. Attack"]}</div>
+                <div className={"stat sp-defense"}>{selectedPokemon.base["Sp. Defense"]}</div>
+                <div className={"stat speed"}>{selectedPokemon.base["Speed"]}</div>
             </div>
         </div>
     )
