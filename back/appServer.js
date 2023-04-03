@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const morgan = require("morgan")
 const cors = require("cors")
-const { authUser, authAdmin } = require('./middlewares.js')
+const { authUser, authAdmin, logRequest } = require('./middlewares.js')
 const { connectDB } = require("./connectDB.js")
 const { populatePokemons } = require("./populatePokemons.js")
 const { getTypes } = require("./getTypes.js")
@@ -53,6 +53,7 @@ function isAccess(token)
   return (token.split(' ')[0] == "Bearer");
 }
 
+app.use(logRequest)
 app.use(authUser)
 app.get('/api/v1/pokemons', asyncWrapper(async (req, res) => {
   if (!req.query["count"])

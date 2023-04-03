@@ -25,6 +25,12 @@ const authUser = asyncWrapper(async (req, res, next) => {
     throw new PokemonAuthError("Access denied")
   })
 
+const logRequest = asyncWrapper(async (req, res, next) => {
+    // get the information in the request
+    // get the information in the response
+    // store it in the database
+});
+
   module.exports = {
-    authUser, authAdmin
+    authUser, authAdmin, logRequest
   }

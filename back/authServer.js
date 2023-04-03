@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const userModel = require("./userModel.js")
 const logModel = require("./logModel.js")
-const { authAdmin } = require('./middlewares.js')
+const { authAdmin, logRequest } = require('./middlewares.js')
 const { asyncWrapper } = require("./asyncWrapper.js")
 const { connectDB } = require("./connectDB.js")
 const dotenv = require("dotenv")
@@ -44,6 +44,7 @@ function isRefresh(token) {
   return (token.split(' ')[0] == "Refresh");
 }
 
+app.use(logRequest)
 app.post('/register', asyncWrapper(async (req, res) => {
   const { username, password, email } = req.body
   const salt = await bcrypt.genSalt(10)
@@ -118,6 +119,9 @@ app.use(authAdmin)
 app.get('/report', async (req, res) => {
   const id = req.query.id;
   res.send(`Report ${id}`);
+
+
+
 })
 
 module.exports = {
