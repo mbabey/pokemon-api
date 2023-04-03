@@ -133,7 +133,6 @@ function Login({ SERVER_ADDRESS }) {
                     <div className="show-register-form-button">
                         <button onClick={() => setShowRegisterForm(!showRegisterForm)} >{(showRegisterForm) ? "I already have an account" : "I don't have an account"}</button>
                     </div>
-                    <div className='centerpiece'></div>
                 </div>)
             }
 
