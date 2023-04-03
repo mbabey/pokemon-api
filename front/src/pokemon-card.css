@@ -46,7 +46,7 @@
     filter: drop-shadow(10px 5px 4px #00000044);
 }
 
-img {
+.poke-card img {
     width: 100px;
     height: auto;
     transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);

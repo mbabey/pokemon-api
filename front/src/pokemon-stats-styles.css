@@ -17,6 +17,8 @@
 .stats-id,
 .stats-name {
     text-align: center;
+    width: 50%;
+    margin-left: auto;
 }
 
 .stats-id {
@@ -26,4 +28,15 @@
 
 .stats-name {
     font-size: 1.4rem;
+}
+
+.stats-pic{
+    display: flex;
+    justify-content: right;
+}
+
+.stats-pic img
+{
+    width: 220px;
+    height: auto;
 }
