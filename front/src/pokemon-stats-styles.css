@@ -33,10 +33,19 @@
 .stats-pic{
     display: flex;
     justify-content: right;
+    margin-right: 5px;
+    filter: drop-shadow(4px 2px 4px #00000077);
 }
 
 .stats-pic img
 {
-    width: 220px;
+    width: 200px;
     height: auto;
+}
+
+.stats-block
+{
+    position: relative;
+    top: -25%;
+    left: 15%;
 }
