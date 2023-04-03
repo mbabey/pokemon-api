@@ -20,6 +20,7 @@ function PokemonStats({ selectedPokemon }) {
     return (
         selectedPokemon &&
         <div className={"pokemon-stats"}>
+            <span className={"stats-close"}>X</span>
             <div className={"stats-id"}>#{zeroes(selectedPokemon.id)}{selectedPokemon.id}</div>
             <div className={"stats-name"}>{selectedPokemon.name.english}</div>
             <div className={"stats-pic"}>
