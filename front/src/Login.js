@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react';
 import Dashboard from './Dashboard';
 import UserPage from './UserPage';
+import './styles/login-styles.css'
 
 function Login({ SERVER_ADDRESS }) {
 

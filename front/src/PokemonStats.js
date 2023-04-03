@@ -1,5 +1,5 @@
 import React from 'react'
-import './pokemon-stats-styles.css'
+import './styles/pokemon-stats-styles.css'
 
 function PokemonStats({ selectedPokemon, setSelectedPokemon }) {
 

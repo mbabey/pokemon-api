@@ -1,5 +1,5 @@
 import React from 'react'
-import './pagination-styles.css'
+import './styles/pagination-styles.css'
 
 
 function Pagination({ pokemon, PAGE_SIZE, setCurrentPage, currentPage }) {

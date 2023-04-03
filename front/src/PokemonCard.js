@@ -1,5 +1,5 @@
 import React from 'react'
-import './pokemon-card.css'
+import './styles/pokemon-card.css'
 
 function PokemonCard({ poke, setSelectedPokemon }) {
 
