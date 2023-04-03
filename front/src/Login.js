@@ -21,12 +21,11 @@ function Login({ SERVER_ADDRESS }) {
                     username: username,
                     password: password
                 });
-            console.log(res.data);
-            console.log(res);
             setUser(res.data);
             const authorization_tokens = res.headers['authorization'].split(',');
-            setAccessToken(authorization_tokens[1]);
-            setRefreshToken(authorization_tokens[0]);
+            console.log(authorization_tokens);
+            setAccessToken(authorization_tokens[0]);
+            setRefreshToken(authorization_tokens[1]);
         } catch (err) {
             if (err.response.data.search('User') != -1) {
                 console.log("User not found.");
@@ -47,8 +46,6 @@ function Login({ SERVER_ADDRESS }) {
                     email: email,
                     password: password
                 });
-            console.log(res.data);
-            console.log(res);
             onLoginHandle(e);
         } catch (err) {
             if (err.response.data.search('username') != -1) {
@@ -60,7 +57,7 @@ function Login({ SERVER_ADDRESS }) {
             }
         }
     }
-
+    
     return (
         <div>
             {

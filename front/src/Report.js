@@ -13,14 +13,18 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
         const currentTime = Date.now() / 1000;
         if (decoded.exp < currentTime) {
             console.log("token expired");
-            const res = await axios.get(`${SERVER_ADDRESS}/requestNewAccessToken`,
-                {
-                    headers: {
-                        'Authorization': refreshToken
-                    }
-                });
-            setAccessToken(res.headers['authorization']);
-            config.headers['Authorization'] = res.headers['Authorization'];
+            try {
+                const res = await axios.post(`${SERVER_ADDRESS}/requestNewAccessToken`, {},
+                    {
+                        headers: {
+                            'Authorization': refreshToken
+                        }
+                    });
+                setAccessToken(res.headers['authorization']);
+                config.headers['Authorization'] = res.headers['Authorization'];
+            } catch (err) {
+                console.log(err.message);
+            }
         }
 
         return config;
@@ -30,14 +34,18 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
 
     useEffect(() => {
         async function fetchReport() {
-            const res = await axiosToBeIntercepted.get(
-                `${SERVER_ADDRESS}/report?id=${id}`,
-                {
-                    headers: {
-                        "Authorization": accessToken
-                    }
-                });
-            setReportTable(res.data);
+            try {
+                const res = await axiosToBeIntercepted.get(
+                    `${SERVER_ADDRESS}/report?id=${id}`,
+                    {
+                        headers: {
+                            "Authorization": accessToken
+                        }
+                    });
+                setReportTable(res.data);
+            } catch (err) {
+                console.log(err.message);
+            }
         }
         fetchReport();
     }, [id]);
