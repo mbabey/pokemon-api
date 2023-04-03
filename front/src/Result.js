@@ -3,9 +3,11 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Pagination from './Pagination';
 import PokemonCard from './PokemonCard';
+import PokemonStats from './PokemonStats';
 
 function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SIZE }) {
     const [pokedex, setPokedex] = useState([]);
+    const [selectedPokemon, setSelectedPokemon] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -31,6 +33,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SI
                             <PokemonCard
                                 key={poke.name.english}
                                 poke={poke}
+                                setSelectedPokemon={setSelectedPokemon}
                             />
                         )
                     })
@@ -42,6 +45,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SI
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
             />
+            <PokemonStats selectedPokemon={selectedPokemon} />
         </div>
     )
 }
