@@ -63,8 +63,8 @@ function Login({ SERVER_ADDRESS }) {
         e.preventDefault();
         try {
             await axios.get(`${SERVER_ADDRESS}/logout?appid=${refreshToken}`);
-            setRefreshToken('');
-            setAccessToken('');
+            setRefreshToken(null);
+            setAccessToken(null);
         } catch (err) {
             console.log(err);
         }
@@ -74,9 +74,9 @@ function Login({ SERVER_ADDRESS }) {
         <div>
             {
                 accessToken && 
-                <div>
+                <div className='logout-button'>
                     <button onClick={onLogoutHandle} >Logout</button>
-                    </div>
+                </div>
             }
             {
                 accessToken && user?.role === 'user' &&
@@ -94,7 +94,7 @@ function Login({ SERVER_ADDRESS }) {
             {
                 !accessToken &&
                 (<div>
-                    <form onSubmit={onLoginHandle}>
+                    <form onSubmit={onLoginHandle} className='login-form' >
                         <input
                             type="text"
                             placeholder="username"
@@ -107,7 +107,7 @@ function Login({ SERVER_ADDRESS }) {
                         />
                         <button type="submit">Login</button>
                     </form>
-                    <form onSubmit={onCreateAccountHandle}>
+                    <form onSubmit={onCreateAccountHandle} className='create-account-form' >
                         <input
                             type="text"
                             placeholder="username"
