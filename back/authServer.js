@@ -23,7 +23,7 @@ const admin = {
 }
 
 async function start() {
-  await connectDB({ "dropUsers": false });
+  await connectDB({ "dropUsers": true });
   app.listen(process.env.authServerPORT, async (err) => {
     if (err) {
       throw new PokemonDbError(err)
@@ -70,7 +70,8 @@ app.post('/requestNewAccessToken', asyncWrapper(async (req, res) => {
   const refreshTokenString = refreshToken.split(' ')[1];
   try {
     const payload = jwt.verify(refreshTokenString, process.env.REFRESH_TOKEN_SECRET)
-    const accessToken = "Bearer " + jwt.sign({ user: payload.user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' })
+    const payload_user = { ...JSON.parse(JSON.stringify(payload.user)), access: "", token: "" };
+    const accessToken = "Bearer " + jwt.sign({ user: payload_user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' })
     await userModel.updateOne({ token: refreshToken }, { access: accessToken });
     res.header('Authorization', accessToken)
     res.send("All good!")
@@ -89,8 +90,9 @@ app.post('/login', asyncWrapper(async (req, res) => {
   if (!isPasswordCorrect)
     throw new PokemonAuthError("Password is incorrect")
 
-  const accessToken = "Bearer " + jwt.sign({ user: user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' })
-  const refreshToken = "Refresh " + jwt.sign({ user: user }, process.env.REFRESH_TOKEN_SECRET)
+  const sign_user = { ...JSON.parse(JSON.stringify(user)), access: "", token: "" };
+  const accessToken = "Bearer " + jwt.sign({ user: sign_user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' })
+  const refreshToken = "Refresh " + jwt.sign({ user: sign_user }, process.env.REFRESH_TOKEN_SECRET)
 
   const logged_in_user = await userModel.findOneAndUpdate(
     { username: username },

@@ -9,8 +9,8 @@ function Login({ SERVER_ADDRESS }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [accessToken, setAccessToken] = useState('');
-    const [refreshToken, setRefreshToken] = useState('');
+    const [accessToken, setAccessToken] = useState(null);
+    const [refreshToken, setRefreshToken] = useState(null);
     const [user, setUser] = useState(null);
 
     const onLoginHandle = async (e) => {
@@ -61,7 +61,9 @@ function Login({ SERVER_ADDRESS }) {
     const onLogoutHandle = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.get(`${SERVER_ADDRESS}/logout?id=${refreshToken}`);
+            await axios.get(`${SERVER_ADDRESS}/logout?appid=${refreshToken}`);
+            setRefreshToken('');
+            setAccessToken('');
         } catch (err) {
             console.log(err);
         }
