@@ -28,7 +28,13 @@ function Login({ SERVER_ADDRESS }) {
             setAccessToken(authorization_tokens[1]);
             setRefreshToken(authorization_tokens[0]);
         } catch (err) {
-            console.log(err);
+            if (err.response.data.search('User') != -1) {
+                console.log("User not found.");
+            } else if (err.response.data.search('Password') != -1) {
+                console.log("Password invalid.");
+            } else {
+                console.log("Unkown error.");
+            }
         }
     }
 
@@ -45,13 +51,12 @@ function Login({ SERVER_ADDRESS }) {
             console.log(res);
             onLoginHandle(e);
         } catch (err) {
-            if (err.response.data.search('username') != -1)
-            {
+            if (err.response.data.search('username') != -1) {
                 console.log("Username taken.");
-            }
-            if (err.response.data.search('email') != -1)
-            {
+            } else if (err.response.data.search('email') != -1) {
                 console.log("Email taken.");
+            } else {
+                console.log("Unkown error.");
             }
         }
     }
