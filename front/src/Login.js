@@ -25,10 +25,10 @@ function Login({ SERVER_ADDRESS }) {
                 });
             setUser(res.data);
             const authorization_tokens = res.headers['authorization'].split(',');
-            console.log(authorization_tokens);
             setAccessToken(authorization_tokens[0]);
             setRefreshToken(authorization_tokens[1]);
         } catch (err) {
+            e.target[2].blur();
             if (err.response.data.search('User') != -1) {
                 console.log("User not found.");
             } else if (err.response.data.search('Password') != -1) {
@@ -41,6 +41,8 @@ function Login({ SERVER_ADDRESS }) {
 
     const onCreateAccountHandle = async (e) => {
         e.preventDefault();
+        console.log()
+        
         try {
             await axios.post(`${SERVER_ADDRESS}/register`,
                 {
@@ -50,6 +52,7 @@ function Login({ SERVER_ADDRESS }) {
                 });
             onLoginHandle(e);
         } catch (err) {
+            e.target[3].blur();
             if (err.response.data.search('username') != -1) {
                 console.log("Username taken.");
             } else if (err.response.data.search('email') != -1) {
