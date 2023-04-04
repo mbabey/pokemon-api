@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
+import './styles/report-styles.css'
 
 function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }) {
 
@@ -51,15 +52,13 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
         fetchReport();
     }, [id]);
 
-
-
     return (
         <div>
             {
                 (reportTable?.report_num === "1") &&
                 (
-                    <div>
-                        <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
+                    <div className={`report report-${reportTable.report_num}`}>
+                        <h4>Report {reportTable.report_num} - {reportTable.report_name}</h4>
                         <table>
                             <thead>
                                 <tr><th>User ID</th><th>Username</th><th>Email</th></tr>
@@ -73,8 +72,8 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
             }{
                 (reportTable?.report_num === "2") &&
                 (
-                    <div>
-                        <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
+                    <div className={`report report-${reportTable.report_num}`}>
+                        <h4>Report {reportTable.report_num} - {reportTable.report_name}</h4>
                         <table>
                             <thead>
                                 <tr><th>User ID</th><th>Username</th><th>Email</th><th>Accesses</th></tr>
@@ -88,8 +87,8 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
             }{
                 (reportTable?.report_num === "3") &&
                 (
-                    <div>
-                        <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
+                    <div className={`report report-${reportTable.report_num}`}>
+                        <h4>Report {reportTable.report_num} - {reportTable.report_name}</h4>
                         <table>
                             <thead>
                                 <tr><th>Route</th><th>User ID</th><th>Username</th><th>Email</th><th>Accesses</th></tr>
@@ -118,8 +117,8 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
             }{
                 (reportTable?.report_num === "4") &&
                 (
-                    <div>
-                        <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
+                    <div className={`report report-${reportTable.report_num}`}>
+                        <h4>Report {reportTable.report_num} - {reportTable.report_name}</h4>
                         <table>
                             <thead>
                                 <tr><th>Endpoint</th><th>Error</th><th>Accesses</th></tr>
@@ -133,8 +132,8 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
             }{
                 (reportTable?.report_num === "5") &&
                 (
-                    <div>
-                        <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
+                    <div className={`report report-${reportTable.report_num}`}>
+                        <h4>Report {reportTable.report_num} - {reportTable.report_name}</h4>
                         <table>
                             <thead>
                                 <tr><th>Endpoint</th><th>Error</th><th>Accesses</th></tr>
