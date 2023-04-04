@@ -1,7 +1,7 @@
 const { asyncWrapper } = require("./asyncWrapper.js");
 const logModel = require('./logModel.js');
+const userModel = require('./userModeal.js');
 const jwt = require("jsonwebtoken");
-const { reserved } = require("mongoose/lib/schema.js");
 
 const authUser = asyncWrapper(async (req, res, next) => {
     const auth_header = req.header('authorization');
@@ -28,34 +28,23 @@ const authAdmin = asyncWrapper(async (req, res, next) => {
 })
 
 const logRequest = asyncWrapper(async (req, res, next) => {
-    // get the information in the request
+
     const timestamp = Date.now();
     const time_start = timestamp;
 
-    // store it in the database
-
     res.on('finish', () => {
-        // get the information in the response
-        let refresh_token;
-        const auth_header = res.getHeaders()['authorization']?.split(',');
-        if (auth_header) {
-            refresh_token = (auth_header.length == 2) ? auth_header[1].split(' ')[1] : auth_header[0].split(' ')[1];
-        } else {
-            refresh_token = req.query.appid.split(' ')[1];
-        }
-        const token_payload = jwt.decode(refresh_token, process.env.REFRESH_TOKEN_SECRET);
-
         const time_end = Date.now();
-        const user = token_payload.user;
+        const user = getUser(req, res);
         const status_code = res.statusCode;
+        const origin = req.headers('origin');
 
         const time_diff = time_end - time_start;
-
         const new_log = {
             timestamp: timestamp,
             user_id: user._id,
             username: user.username,
             email: user.email,
+            origin: origin,
             endpoint: req.url,
             method: req.method,
             status_code: status_code,
@@ -68,13 +57,19 @@ const logRequest = asyncWrapper(async (req, res, next) => {
     next();
 });
 
-function getUser(req) {
-    if (auth_header) {
-
-    } else {
-        console.log(req.body);
+function getUser(req, res) {
+    let refresh_token;
+    const auth_header = res.getHeaders()['authorization']?.split(',');
+    // Get the refresh token if it is in the auth header or if it is in the request query as 'appid'
+    (auth_header)?(refresh_token=(auth_header.length==2)?auth_header[1].split(' ')[1]:auth_header[0].split(' ')[1]):(refresh_token=req.query?.appid?.split(' ')[1]);
+    
+    if (!refresh_token && (req.url == '/login' || req.url == '/register')) {
+        
     }
+    const token_payload = jwt.decode(refresh_token, process.env.REFRESH_TOKEN_SECRET);
+    const user = token_payload.user;
 
+    return user;
 }
 
 module.exports = {
