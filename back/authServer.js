@@ -25,7 +25,7 @@ const admin = {
 }
 
 async function start() {
-  await connectDB({ "dropUsers": true });
+  await connectDB({ "dropUsers": true, "dropLogs": true });
   app.listen(process.env.authServerPORT, async (err) => {
     if (err) {
       throw new PokemonDbError(err)
@@ -117,11 +117,58 @@ app.get('/logout', asyncWrapper(async (req, res) => {
 
 app.use(authAdmin)
 app.get('/report', async (req, res) => {
-  const id = req.query.id;
+
+  switch (req.query.id) {
+    case "1": // Unique API users over a period of time
+      {
+        logModel.aggregate([
+          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") } } },
+          { $group: { _id: "$user_id" } },
+          { $group: { _id: null, count: { $sum: 1 } } }
+        ])
+        break;
+      }
+    case "2": // Top API users over period of time
+      {
+        logModel.aggregate([
+          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") } } },
+          { $group: { _id: "$user_id", total_response_time: { $sum: "$response_time" } } },
+          { $sort: { total_response_time: -1 } },
+          { $limit: 10 }
+        ])
+        break;
+      }
+    case "3": // Top users for each Endpoint
+      {
+        logModel.aggregate([
+          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") } } },
+          { $group: { _id: { endpoint: "$endpoint", user_id: "$user_id" }, total_response_time: { $sum: "$response_time" } } },
+          { $sort: { "_id.endpoint": 1, total_response_time: -1 } },
+          { $group: { _id: "$_id.endpoint", top_users: { $push: { user_id: "$_id.user_id", total_response_time: "$total_response_time" } } } }
+        ])
+        break;
+      }
+    case "4": // 4xx Errors By Endpoint
+      {
+        logModel.aggregate([
+          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") }, status_code: { $gte: 400, $lt: 500 } } },
+          { $group: { _id: { endpoint: "$endpoint", status_code: "$status_code" }, count: { $sum: 1 } } },
+          { $match: { "_id.status_code": /^4/ } },
+          { $sort: { count: -1 } }
+        ])
+        break;
+      }
+    case "5": // Recent 4xx/5xx Errors
+      {
+        logModel.find({timestamp: { $gte: ISODate("2022-12-01T00:00:00.000Z") }, status_code: { $gte: 400 }},
+          { timestamp: 1, user_id: 1, endpoint: 1, status_code: 1 })
+          .sort({ timestamp: -1 }).limit(10)
+        break;
+      }
+    default: ;
+  }
+
   res.send(`Report ${id}`);
-  
-
-
 })
 
 module.exports = {

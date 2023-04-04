@@ -52,7 +52,6 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
 
     return (
         <div>
-            Report {id}
             {
                 reportTable &&
                 reportTable
