@@ -55,7 +55,7 @@ function Login({ SERVER_ADDRESS }) {
             e.target[3].blur();
             if (err.response.data.search('username') !== -1) {
                 console.log("Username taken.");
-            } else if (err.response.data.search('email') != -1) {
+            } else if (err.response.data.search('email') !== -1) {
                 console.log("Email taken.");
             } else {
                 console.log("Unkown error.");

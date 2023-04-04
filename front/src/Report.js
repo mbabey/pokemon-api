@@ -48,7 +48,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
             }
         }
         fetchReport();
-    }, [id]);
+    }, [id, SERVER_ADDRESS, accessToken, axiosToBeIntercepted, reportTable]);
 
     return (
         <div>
@@ -58,7 +58,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                     <div>Report {reportTable?.report_num}</div>
                     <table>
-                        <th></th>
+                        <tr><th></th></tr>
                     </table>
                 </div>
                 )
@@ -67,7 +67,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                     <div>Report {reportTable?.report_num}</div>
                     <table>
-                        <th></th>
+                        <tr><th></th></tr>
                     </table>
                 </div>
                 )
@@ -76,7 +76,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                     <div>Report {reportTable?.report_num}</div>
                     <table>
-                        <th></th>
+                        <tr><th></th></tr>
                     </table>
                 </div>
                 )
@@ -85,7 +85,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                     <div>Report {reportTable?.report_num}</div>
                     <table>
-                        <th></th>
+                        <tr><th></th></tr>
                     </table>
                 </div>
                 )
@@ -94,7 +94,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                     <div>Report {reportTable?.report_num}</div>
                     <table>
-                        <th></th>
+                        <tr><th></th></tr>
                     </table>
                 </div>
                 )
