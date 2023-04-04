@@ -70,7 +70,6 @@ function getUserFromToken(req, res) {
         auth_header = req.header('authorization')?.split(',');
     }
 
-
     // Get the refresh token.
     if (auth_header) {
         refresh_token = (auth_header.length == 2) ? auth_header[1].split(' ')[1] : auth_header[0].split(' ')[1];
@@ -79,11 +78,6 @@ function getUserFromToken(req, res) {
     if (!refresh_token && auth_header) {
         access_token = auth_header[0].split(' ')[1];
     }
-    // If there is no access token and no refresh token, get the appid as the refresh token (/logout)
-    if (!refresh_token && !access_token) {
-        refresh_token = req.query?.appid?.split(' ')[1]
-    }
-
 
     // Get the user from a token.
     if (refresh_token) {
