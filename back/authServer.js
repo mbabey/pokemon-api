@@ -120,54 +120,51 @@ app.use(authAdmin)
 app.get('/report', async (req, res) => {
 
   const MS_PER_WEEK = 604800000;
+  const END_DATE = Date.now();
+  const START_DATE = END_DATE - MS_PER_WEEK;
 
   let stats;
 
   switch (req.query.id) {
     case "1": // Unique API users over a period of time
       {
-        stats = logModel.aggregate([
-          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() } } },
-          { $group: { _id: "$user_id" } },
-          { $group: { _id: null, count: { $sum: 1 } } }
-        ])
+        stats = await logModel.distinct('user_id', { timestamp: { $gte: START_DATE, $lte: END_DATE } });
         break;
       }
     case "2": // Top API users over period of time
       {
-        stats = logModel.aggregate([
-          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() } } },
-          { $group: { _id: "$user_id", total_response_time: { $sum: "$response_time" } } },
-          { $sort: { total_response_time: -1 } },
+        stats = await logModel.aggregate([
+          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
+          { $group: { _id: '$user_id', count: { $sum: 1 } } },
+          { $sort: { count: -1 } },
           { $limit: 10 }
         ])
         break;
       }
     case "3": // Top users for each Endpoint
       {
-        stats = logModel.aggregate([
-          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() } } },
-          { $group: { _id: { endpoint: "$endpoint", user_id: "$user_id" }, total_response_time: { $sum: "$response_time" } } },
-          { $sort: { "_id.endpoint": 1, total_response_time: -1 } },
-          { $group: { _id: "$_id.endpoint", top_users: { $push: { user_id: "$_id.user_id", total_response_time: "$total_response_time" } } } }
+        stats = await logModel.aggregate([
+          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
+          { $group: { _id: { endpoint: '$endpoint', user_id: '$user_id' }, count: { $sum: 1 } } },
+          { $sort: { '_id.endpoint': 1, count: -1 } },
+          { $group: { _id: '$_id.endpoint', topUsers: { $push: { user_id: '$_id.user_id', count: '$count' } } } }
         ])
         break;
       }
     case "4": // 4xx Errors By Endpoint
       {
-        stats = logModel.aggregate([
-          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() }, status_code: { $gte: 400, $lt: 500 } } },
-          { $group: { _id: { endpoint: "$endpoint", status_code: "$status_code" }, count: { $sum: 1 } } },
-          { $match: { "_id.status_code": /^4/ } },
-          { $sort: { count: -1 } }
+        stats = await logModel.aggregate([
+          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE }, status_code: { $gte: 400, $lt: 500 } } },
+          { $group: { _id: '$endpoint', count: { $sum: 1 } } }
         ])
         break;
       }
     case "5": // Recent 4xx/5xx Errors
       {
-        stats = logModel.find({timestamp: { $gte: Date.now() - MS_PER_WEEK }, status_code: { $gte: 400 }},
-          { timestamp: 1, user_id: 1, endpoint: 1, status_code: 1 })
-          .sort({ timestamp: -1 }).limit(10)
+        const CUT_OFF_DATE = END_DATE - 24 * 60 * 60 * 1000
+
+        stats = await logModel.find({ status_code: { $gte: 400 }, timestamp: { $gte: CUT_OFF_DATE } })
+        .sort({ timestamp: -1 })
         break;
       }
     default: ;
@@ -176,7 +173,7 @@ app.get('/report', async (req, res) => {
     report_num: req.query.id,
     statistics: stats
   }
-
+  console.log(return_object);
   res.send(return_object);
 })
 
