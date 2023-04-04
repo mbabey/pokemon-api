@@ -63,7 +63,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                         <table>
                             <tr><th>User ID</th><th>Username</th><th>Email</th></tr>
                             {reportTable.statistics.map(stat => {
-                                return <tr><td>{stat}</td></tr>
+                                return <tr><td>{stat._id.user_id}</td><td>{stat._id.username}</td><td>{stat._id.email}</td></tr>
                             })}
                         </table>
                     </div>

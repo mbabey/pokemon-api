@@ -131,7 +131,10 @@ app.get('/report', async (req, res) => {
     case "1":
       {
         report_name = "Unique API Users Over the Last Week";
-        stats = await logModel.distinct('user_id', { timestamp: { $gte: START_DATE, $lte: END_DATE } });
+        // stats = await logModel.distinct('user_id', { timestamp: { $gte: START_DATE, $lte: END_DATE } });
+        stats = await logModel.aggregate([
+          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
+          { $group: { _id: {email: '$email', username: '$username', user_id: '$user_id'}, count: { $sum: 1 } } }]);
         break;
       }
     case "2":
@@ -139,7 +142,7 @@ app.get('/report', async (req, res) => {
         report_name = "Top API Users Over the Last Week"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
-          { $group: { _id: '$user_id', count: { $sum: 1 } } },
+          { $group: { _id: {email: '$email', username: '$username', user_id: '$user_id'}, count: { $sum: 1 } } },
           { $sort: { count: -1 } },
           { $limit: 10 }
         ])
