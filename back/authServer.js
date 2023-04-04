@@ -110,7 +110,13 @@ app.post('/login', asyncWrapper(async (req, res) => {
 }));
 
 app.get('/logout', asyncWrapper(async (req, res) => {
-  const user = await userModel.findOneAndUpdate({ token: req.query.appid }, { token_invalid: true }, { new: true })
+
+  const refreshToken = req.header('authorization')
+  if (!(refreshToken && isRefresh(refreshToken))) {
+    throw new PokemonAuthError("No Token: Please provide a token.")
+  }
+
+  const user = await userModel.findOneAndUpdate({ token: refreshToken }, { token_invalid: true }, { new: true })
   if (!user) {
     throw new PokemonAuthError("User not found")
   }

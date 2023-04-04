@@ -66,7 +66,7 @@ function Login({ SERVER_ADDRESS }) {
     const onLogoutHandle = async (e) => {
         e.preventDefault();
         try {
-            await axios.get(`${SERVER_ADDRESS}/logout?appid=${refreshToken}`);
+            await axios.get(`${SERVER_ADDRESS}/logout`, { headers: { 'authorization': refreshToken } });
             setRefreshToken(null);
             setAccessToken(null);
         } catch (err) {
