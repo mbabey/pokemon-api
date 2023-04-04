@@ -42,61 +42,63 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                             "authorization": accessToken
                         }
                     });
-                setReportTable( { ...reportTable, ...res.data } );
+                console.log(reportTable)
+                setReportTable({ ...reportTable, ...res.data });
             } catch (err) {
                 console.log(err.message);
             }
         }
         fetchReport();
-    }, [id, SERVER_ADDRESS, accessToken, axiosToBeIntercepted, reportTable]);
+    }, [id]);
 
     return (
         <div>
             {
-                (reportTable?.report_num === 1) && 
+                (reportTable?.report_num === "1") &&
                 (
                     <div>
-                    <div>Report {reportTable?.report_num}</div>
-                    <table>
-                        <tr><th></th></tr>
-                    </table>
-                </div>
+                        <div>Report {reportTable?.report_num}</div>
+                    </div>
                 )
-                (reportTable?.report_num === 2) && 
+            }{
+                (reportTable?.report_num === "2") &&
                 (
                     <div>
-                    <div>Report {reportTable?.report_num}</div>
-                    <table>
-                        <tr><th></th></tr>
-                    </table>
-                </div>
+                        <div>Report {reportTable?.report_num}</div>
+                        <table>
+                            <tr><th></th></tr>
+                        </table>
+                    </div>
                 )
-                (reportTable?.report_num === 3) && 
+            }{
+                (reportTable?.report_num === "3") &&
                 (
                     <div>
-                    <div>Report {reportTable?.report_num}</div>
-                    <table>
-                        <tr><th></th></tr>
-                    </table>
-                </div>
+                        <div>Report {reportTable?.report_num}</div>
+                        <table>
+                            <tr><th></th></tr>
+                        </table>
+                    </div>
                 )
-                (reportTable?.report_num === 4) && 
+            }{
+                (reportTable?.report_num === "4") &&
                 (
                     <div>
-                    <div>Report {reportTable?.report_num}</div>
-                    <table>
-                        <tr><th></th></tr>
-                    </table>
-                </div>
+                        <div>Report {reportTable?.report_num}</div>
+                        <table>
+                            <tr><th></th></tr>
+                        </table>
+                    </div>
                 )
-                (reportTable?.report_num === 5) && 
+            }{
+                (reportTable?.report_num === "5") &&
                 (
                     <div>
-                    <div>Report {reportTable?.report_num}</div>
-                    <table>
-                        <tr><th></th></tr>
-                    </table>
-                </div>
+                        <div>Report {reportTable?.report_num}</div>
+                        <table>
+                            <tr><th></th></tr>
+                        </table>
+                    </div>
                 )
             }
 
