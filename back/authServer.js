@@ -174,7 +174,6 @@ app.get('/report', async (req, res) => {
     report_num: req.query.id,
     statistics: stats
   }
-  console.log(return_object);
   res.send(return_object);
 })
 
