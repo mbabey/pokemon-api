@@ -96,8 +96,10 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                             </thead>
                             <tbody>
                                 {reportTable.statistics.map(stat => {
+                                    const endpoint = stat._id.endpoint;
+                                    let count = 0;
                                     return <>
-                                        <tr key={stat._id.endpoint}>
+                                        <tr key={endpoint + ++count}>
                                             <td rowSpan={stat.topUsers.length}>{stat._id.endpoint}</td>
                                             <td>{stat.topUsers[0].user_id}</td>
                                             <td>{stat.topUsers[0].username}</td>
@@ -105,7 +107,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                                             <td>{stat.topUsers[0].count}</td>
                                         </tr>
                                         {stat.topUsers.slice(1).map(user => {
-                                            <tr key={user.user_id}><td>{user.user_id}</td><td>{user.username}</td><td>{user.email}</td><td>{user.count}</td></tr>
+                                            return <tr key={endpoint + ++count}><td>{user.user_id}</td><td>{user.username}</td><td>{user.email}</td><td>{user.count}</td></tr>
                                         })}
                                     </>
                                 }
