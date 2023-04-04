@@ -96,10 +96,9 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                             </thead>
                             <tbody>
                                 {reportTable.statistics.map(stat => {
-                                    const endpoint = stat._id.endpoint;
                                     let count = 0;
                                     return <>
-                                        <tr key={endpoint + ++count}>
+                                        <tr key={stat._id.endpoint + " " + ++count}>
                                             <td rowSpan={stat.topUsers.length}>{stat._id.endpoint}</td>
                                             <td>{stat.topUsers[0].user_id}</td>
                                             <td>{stat.topUsers[0].username}</td>
@@ -107,7 +106,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                                             <td>{stat.topUsers[0].count}</td>
                                         </tr>
                                         {stat.topUsers.slice(1).map(user => {
-                                            return <tr key={endpoint + ++count}><td>{user.user_id}</td><td>{user.username}</td><td>{user.email}</td><td>{user.count}</td></tr>
+                                            return <tr key={stat._id.endpoint + " " + ++count}><td>{user.user_id}</td><td>{user.username}</td><td>{user.email}</td><td>{user.count}</td></tr>
                                         })}
                                     </>
                                 }
@@ -122,8 +121,8 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
-                        <thead>
-                                <tr><th>Endpoint</th><th>Error</th><th>Count</th><th>Accesses</th></tr>
+                            <thead>
+                                <tr><th>Endpoint</th><th>Error</th><th>Accesses</th></tr>
                             </thead>
                             <tbody>
                                 {reportTable.statistics.map(stat => <tr key={stat._id.endpoint}><td>{stat._id.endpoint}</td><td>{stat._id.status_code}</td><td>{stat.count}</td></tr>)}
@@ -137,7 +136,16 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
-                            <tr><th></th></tr>
+                            <thead>
+                                <tr><th>Endpoint</th><th>Error</th><th>Accesses</th></tr>
+                            </thead>
+                            <tbody>
+                                {reportTable.statistics.map(stat => {
+                                    let count = 0;
+                                    return <tr key={stat._id.endpoint + " " + ++count}><td>{stat._id.endpoint}</td><td>{stat._id.status_code}</td><td>{stat.count}</td></tr>
+                                }
+                                )}
+                            </tbody>
                         </table>
                     </div>
                 )

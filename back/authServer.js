@@ -140,7 +140,8 @@ app.get('/report', async (req, res) => {
         // stats = await logModel.distinct('user_id', { timestamp: { $gte: START_DATE, $lte: END_DATE } });
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
-          { $group: { _id: {email: '$email', username: '$username', user_id: '$user_id'}, count: { $sum: 1 } } }]);
+          { $group: { _id: {email: '$email', username: '$username', user_id: '$user_id'}, count: { $sum: 1 } } }
+        ]);
         break;
       }
     case "2":
@@ -150,7 +151,6 @@ app.get('/report', async (req, res) => {
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
           { $group: { _id: {email: '$email', username: '$username', user_id: '$user_id'}, count: { $sum: 1 } } },
           { $sort: { count: -1 } },
-          { $limit: 10 }
         ])
         break;
       }
@@ -169,7 +169,7 @@ app.get('/report', async (req, res) => {
       {
         report_name = "4xx Errors by Endpoint Over the Last Week"
         stats = await logModel.aggregate([
-          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE }, status_code: { $gte: 400, $lte: 500 } } },
+          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE }, status_code: { $gte: 400, $lt: 500 } } },
           { $group: { _id: { endpoint: '$endpoint', status_code: '$status_code' }, count: { $sum: 1 } } }
         ])
         break;
@@ -178,8 +178,10 @@ app.get('/report', async (req, res) => {
       {
         const CUT_OFF_DATE = END_DATE - 24 * 60 * 60 * 1000
         report_name = "4xx/5xx Errors in the Last 24 Hours"
-        stats = await logModel.find({ status_code: { $gte: 400 }, timestamp: { $gte: CUT_OFF_DATE } })
-        .sort({ timestamp: -1 })
+        stats = await logModel.aggregate([
+          { $match: { timestamp: { $gt: CUT_OFF_DATE }, status_code: { $gte: 400 } } },
+          { $group: { _id: { endpoint: '$endpoint', status_code: '$status_code' }, count: { $sum: 1 } } }
+        ])
         break;
       }
     default: ;
