@@ -130,13 +130,13 @@ app.get('/report', async (req, res) => {
   switch (req.query.id) {
     case "1":
       {
-        report_name = "Unique API users over a period of time";
+        report_name = "Unique API Users Over the Last Week";
         stats = await logModel.distinct('user_id', { timestamp: { $gte: START_DATE, $lte: END_DATE } });
         break;
       }
     case "2":
       {
-        report_name = "Top API users over period of time"
+        report_name = "Top API Users Over the Last Week"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
           { $group: { _id: '$user_id', count: { $sum: 1 } } },
@@ -147,7 +147,7 @@ app.get('/report', async (req, res) => {
       }
     case "3":
       {
-        report_name = "Top users for each Endpoint"
+        report_name = "Top Users for Each Endpoint Over the Last Week"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
           { $group: { _id: { endpoint: '$endpoint', user_id: '$user_id' }, count: { $sum: 1 } } },
@@ -158,7 +158,7 @@ app.get('/report', async (req, res) => {
       }
     case "4":
       {
-        report_name = "4xx Errors By Endpoint"
+        report_name = "4xx Errors by Endpoint Over the Last Week"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE }, status_code: { $gte: 400, $lt: 500 } } },
           { $group: { _id: '$endpoint', count: { $sum: 1 } } }
@@ -168,7 +168,7 @@ app.get('/report', async (req, res) => {
     case "5":
       {
         const CUT_OFF_DATE = END_DATE - 24 * 60 * 60 * 1000
-        report_name = "Recent 4xx/5xx Errors"
+        report_name = "4xx/5xx Errors in the Last 24 Hours"
         stats = await logModel.find({ status_code: { $gte: 400 }, timestamp: { $gte: CUT_OFF_DATE } })
         .sort({ timestamp: -1 })
         break;
