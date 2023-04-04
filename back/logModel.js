@@ -13,6 +13,10 @@ const logSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  method: {
+    type: String,
+    required: true
+  },
   status_code: {
     type: Number,
     required: true

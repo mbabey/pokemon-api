@@ -119,7 +119,7 @@ app.use(authAdmin)
 app.get('/report', async (req, res) => {
   const id = req.query.id;
   res.send(`Report ${id}`);
-
+  
 
 
 })
