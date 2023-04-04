@@ -1,6 +1,7 @@
 const { asyncWrapper } = require("./asyncWrapper.js");
 const logModel = require('./logModel.js');
 const jwt = require("jsonwebtoken");
+const { reserved } = require("mongoose/lib/schema.js");
 
 const authUser = asyncWrapper(async (req, res, next) => {
     const auth_header = req.header('authorization');
@@ -30,26 +31,50 @@ const logRequest = asyncWrapper(async (req, res, next) => {
     // get the information in the request
     const timestamp = Date.now();
     const time_start = timestamp;
-    const user_id = 1;
-    const status_code = 420;
 
-    // get the information in the response
-    const time_end = Date.now();
-
-    const time_diff = time_end - time_start;
     // store it in the database
-    const new_log = {
-        timestamp: timestamp,
-        user_id: user_id,
-        endpoint: req.url,
-        method: req.method,
-        status_code: status_code,
-        response_time: time_diff    
-    };
-    console.log(new_log);
-    logModel.create(new_log);
+
+    res.on('finish', () => {
+        // get the information in the response
+        let refresh_token;
+        const auth_header = res.getHeaders()['authorization']?.split(',');
+        if (auth_header) {
+            refresh_token = (auth_header.length == 2) ? auth_header[1].split(' ')[1] : auth_header[0].split(' ')[1];
+        } else {
+            refresh_token = req.query.appid;
+        }
+        const token_payload = jwt.decode(refresh_token, process.env.REFRESH_TOKEN_SECRET);
+        console.log(token_payload.user);
+
+        const time_end = Date.now();
+        const user = token_payload.user;
+        const status_code = res.statusCode;
+
+        const time_diff = time_end - time_start;
+
+        const new_log = {
+            timestamp: timestamp,
+            user_id: user._id,
+            endpoint: req.url,
+            method: req.method,
+            status_code: status_code,
+            response_time: time_diff
+        };
+        console.log(new_log);
+        logModel.create(new_log);
+    });
+
     next();
 });
+
+function getUser(req) {
+    if (auth_header) {
+
+    } else {
+        console.log(req.body);
+    }
+
+}
 
 module.exports = {
     authUser, authAdmin, logRequest
