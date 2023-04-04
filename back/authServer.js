@@ -44,7 +44,7 @@ function isRefresh(token) {
   return (token.split(' ')[0] == "Refresh");
 }
 
-app.use(logRequest)
+
 app.post('/register', asyncWrapper(async (req, res) => {
   const { username, password, email } = req.body
   const salt = await bcrypt.genSalt(10)
@@ -55,6 +55,7 @@ app.post('/register', asyncWrapper(async (req, res) => {
   res.send(user)
 }))
 
+app.use(logRequest)
 app.post('/requestNewAccessToken', asyncWrapper(async (req, res) => {
 
   // Parse the headers to get the Refresh token.

@@ -36,7 +36,7 @@ const logRequest = asyncWrapper(async (req, res, next) => {
 
     res.on('finish', async () => {
         const time_end = Date.now();
-        const user = await getUserFromToken(req, res);
+        const user = getUserFromToken(req, res);
         const status_code = res.statusCode;
         const origin = req.header('origin');
 
@@ -59,8 +59,7 @@ const logRequest = asyncWrapper(async (req, res, next) => {
     next();
 });
 
-async function getUserFromToken(req, res) {
-    console.log(req.body);
+function getUserFromToken(req, res) {
     let user;
     let refresh_token;
     let access_token;
@@ -96,7 +95,7 @@ async function getUserFromToken(req, res) {
         user = token_payload?.user;
     }
 
-    // Just set dat stuff if ya gotta
+    // Just set data stuff if ya gotta
     if (!user)
     {
         user = {
