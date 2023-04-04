@@ -52,7 +52,7 @@ const logRequest = asyncWrapper(async (req, res, next) => {
             status_code: status_code,
             response_time_ms: time_diff
         };
-        console.log(new_log);
+        // console.log(new_log);
         logModel.create(new_log);
     });
 

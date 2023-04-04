@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode'
 
 function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }) {
 
-    const [reportTable, setReportTable] = React.useState(null)
+    const [reportTable, setReportTable] = useState({});
 
     const axiosToBeIntercepted = axios.create();
     axiosToBeIntercepted.interceptors.request.use(async (config) => {
@@ -42,9 +42,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                             "authorization": accessToken
                         }
                     });
-                    console.log(res.data);
-                setReportTable(res.data);
-                console.log(reportTable);
+                setReportTable( { ...reportTable, ...res.data } );
             } catch (err) {
                 console.log(err.message);
             }
@@ -54,9 +52,54 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
 
     return (
         <div>
-            <div>
-                <div>Report {reportTable?.report_id}</div>
-            </div>
+            {
+                (reportTable?.report_num === 1) && 
+                (
+                    <div>
+                    <div>Report {reportTable?.report_num}</div>
+                    <table>
+                        <th></th>
+                    </table>
+                </div>
+                )
+                (reportTable?.report_num === 2) && 
+                (
+                    <div>
+                    <div>Report {reportTable?.report_num}</div>
+                    <table>
+                        <th></th>
+                    </table>
+                </div>
+                )
+                (reportTable?.report_num === 3) && 
+                (
+                    <div>
+                    <div>Report {reportTable?.report_num}</div>
+                    <table>
+                        <th></th>
+                    </table>
+                </div>
+                )
+                (reportTable?.report_num === 4) && 
+                (
+                    <div>
+                    <div>Report {reportTable?.report_num}</div>
+                    <table>
+                        <th></th>
+                    </table>
+                </div>
+                )
+                (reportTable?.report_num === 5) && 
+                (
+                    <div>
+                    <div>Report {reportTable?.report_num}</div>
+                    <table>
+                        <th></th>
+                    </table>
+                </div>
+                )
+            }
+
 
         </div>
     )
