@@ -71,6 +71,11 @@ function Login({ SERVER_ADDRESS }) {
             setAccessToken(null);
         } catch (err) {
             console.log(err);
+            if (err.response.data.search('User not found') !== -1)
+            {
+                setRefreshToken(null);
+                setAccessToken(null);
+            }
         }
     }
 

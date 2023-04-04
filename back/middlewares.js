@@ -37,7 +37,6 @@ const logRequest = asyncWrapper(async (req, res, next) => {
     const time_end = Date.now();
 
     const time_diff = time_end - time_start;
-    console.log(time_diff);
     // store it in the database
     const new_log = {
         timestamp: timestamp,

@@ -76,9 +76,10 @@ app.post('/requestNewAccessToken', asyncWrapper(async (req, res) => {
     const payload_user = { ...JSON.parse(JSON.stringify(payload.user)), access: "", token: "" };
     const accessToken = "Bearer " + jwt.sign({ user: payload_user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' })
     await userModel.updateOne({ token: refreshToken }, { access: accessToken });
-    res.header('Authorization', accessToken)
+    res.header('authorization', accessToken)
     res.send("All good!")
   } catch (error) {
+    console.log(error);
     throw new PokemonAuthError("Invalid Token: Please provide a valid token.")
   }
 }))
@@ -118,11 +119,15 @@ app.get('/logout', asyncWrapper(async (req, res) => {
 app.use(authAdmin)
 app.get('/report', async (req, res) => {
 
+  const MS_PER_WEEK = 604800000;
+
+  let stats;
+
   switch (req.query.id) {
     case "1": // Unique API users over a period of time
       {
-        logModel.aggregate([
-          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") } } },
+        stats = logModel.aggregate([
+          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() } } },
           { $group: { _id: "$user_id" } },
           { $group: { _id: null, count: { $sum: 1 } } }
         ])
@@ -130,8 +135,8 @@ app.get('/report', async (req, res) => {
       }
     case "2": // Top API users over period of time
       {
-        logModel.aggregate([
-          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") } } },
+        stats = logModel.aggregate([
+          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() } } },
           { $group: { _id: "$user_id", total_response_time: { $sum: "$response_time" } } },
           { $sort: { total_response_time: -1 } },
           { $limit: 10 }
@@ -140,8 +145,8 @@ app.get('/report', async (req, res) => {
       }
     case "3": // Top users for each Endpoint
       {
-        logModel.aggregate([
-          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") } } },
+        stats = logModel.aggregate([
+          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() } } },
           { $group: { _id: { endpoint: "$endpoint", user_id: "$user_id" }, total_response_time: { $sum: "$response_time" } } },
           { $sort: { "_id.endpoint": 1, total_response_time: -1 } },
           { $group: { _id: "$_id.endpoint", top_users: { $push: { user_id: "$_id.user_id", total_response_time: "$total_response_time" } } } }
@@ -150,8 +155,8 @@ app.get('/report', async (req, res) => {
       }
     case "4": // 4xx Errors By Endpoint
       {
-        logModel.aggregate([
-          { $match: { timestamp: { $gte: ISODate("2022-01-01T00:00:00.000Z"), $lte: ISODate("2022-12-31T23:59:59.999Z") }, status_code: { $gte: 400, $lt: 500 } } },
+        stats = logModel.aggregate([
+          { $match: { timestamp: { $gte: Date.now() - MS_PER_WEEK, $lte: Date.now() }, status_code: { $gte: 400, $lt: 500 } } },
           { $group: { _id: { endpoint: "$endpoint", status_code: "$status_code" }, count: { $sum: 1 } } },
           { $match: { "_id.status_code": /^4/ } },
           { $sort: { count: -1 } }
@@ -160,15 +165,19 @@ app.get('/report', async (req, res) => {
       }
     case "5": // Recent 4xx/5xx Errors
       {
-        logModel.find({timestamp: { $gte: ISODate("2022-12-01T00:00:00.000Z") }, status_code: { $gte: 400 }},
+        stats = logModel.find({timestamp: { $gte: Date.now() - MS_PER_WEEK }, status_code: { $gte: 400 }},
           { timestamp: 1, user_id: 1, endpoint: 1, status_code: 1 })
           .sort({ timestamp: -1 }).limit(10)
         break;
       }
     default: ;
   }
+  const return_object = {
+    report_num: req.query.id,
+    statistics: stats
+  }
 
-  res.send(`Report ${id}`);
+  res.send(return_object);
 })
 
 module.exports = {

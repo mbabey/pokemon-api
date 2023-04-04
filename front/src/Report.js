@@ -17,11 +17,11 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                 const res = await axios.post(`${SERVER_ADDRESS}/requestNewAccessToken`, {},
                     {
                         headers: {
-                            'Authorization': refreshToken
+                            'authorization': refreshToken
                         }
                     });
                 setAccessToken(res.headers['authorization']);
-                config.headers['Authorization'] = res.headers['Authorization'];
+                config.headers['authorization'] = res.headers['authorization'];
             } catch (err) {
                 console.log(err.message);
             }
@@ -39,10 +39,12 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     `${SERVER_ADDRESS}/report?id=${id}`,
                     {
                         headers: {
-                            "Authorization": accessToken
+                            "authorization": accessToken
                         }
                     });
+                    console.log(res.data);
                 setReportTable(res.data);
+                console.log(reportTable);
             } catch (err) {
                 console.log(err.message);
             }
@@ -52,10 +54,10 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
 
     return (
         <div>
-            {
-                reportTable &&
-                reportTable
-            }
+            <div>
+                <div>Report {reportTable?.report_id}</div>
+            </div>
+
         </div>
     )
 }
