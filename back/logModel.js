@@ -33,7 +33,7 @@ const logSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    response_time: {
+    response_time_ms: {
         type: Number,
         required: true
     }
