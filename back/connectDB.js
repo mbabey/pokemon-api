@@ -17,14 +17,19 @@ const connectDB = async (input) => {
     console.log("Connected to db");
     if (input.dropUsers === true)
     {
-      console.log("Dropped user collection");
+      console.log("Dropped pokeusers collection");
       await mongoose.connection.dropCollection('pokeusers');
       await userModel.create({ ...admin, password: bcrypt.hashSync(admin.password, 10) });
     }
     if (input.dropPokemon === true)
     {
-      console.log("Dropped pokemon collection");
+      console.log("Dropped pokemons collection");
       await mongoose.connection.dropCollection('pokemons');
+    }
+    if (input.dropLogs === true)
+    {
+      console.log("Dropped logs collection");
+      await mongoose.connection.dropCollection('logs');
     }
   } catch (error) {
     console.log('db error');
