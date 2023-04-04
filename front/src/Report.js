@@ -51,6 +51,8 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
         fetchReport();
     }, [id]);
 
+
+
     return (
         <div>
             {
@@ -59,7 +61,10 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
-                            <tr><th></th></tr>
+                            <tr><th>User ID</th><th>Username</th><th>Email</th></tr>
+                            {reportTable.statistics.map(stat => {
+                                return <tr><td>{stat}</td></tr>
+                            })}
                         </table>
                     </div>
                 )
