@@ -153,9 +153,9 @@ app.get('/report', async (req, res) => {
         report_name = "Top Users for Each Endpoint Over the Last Week"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
-          { $group: { _id: { endpoint: '$endpoint', user_id: '$user_id' }, count: { $sum: 1 } } },
+          { $group: { _id: { endpoint: '$endpoint', email: '$email', username: '$username', user_id: '$user_id' }, count: { $sum: 1 } } },
           { $sort: { '_id.endpoint': 1, count: -1 } },
-          { $group: { _id: '$_id.endpoint', topUsers: { $push: { user_id: '$_id.user_id', count: '$count' } } } }
+          { $group: { _id: {endpoint: '$_id.endpoint'}, topUsers: { $push: { user_id: '$_id.user_id', email: '$_id.email', username: '$_id.username', user_id: '$_id.user_id', count: '$count' } } } }
         ])
         break;
       }

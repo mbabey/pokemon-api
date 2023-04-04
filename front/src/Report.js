@@ -92,10 +92,24 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
                             <thead>
-                                <tr><th>User ID</th><th>Username</th><th>Email</th><th>Accesses</th></tr>
+                                <tr><th>Route</th><th>User ID</th><th>Username</th><th>Email</th><th>Accesses</th></tr>
                             </thead>
                             <tbody>
-                                {reportTable.statistics.map(stat => <tr key={stat._id.user_id}><td>{stat._id.user_id}</td><td>{stat._id.username}</td><td>{stat._id.email}</td><td>{stat.count}</td></tr>)}
+                                {reportTable.statistics.map(stat => {
+                                    return <>
+                                        <tr key={stat._id.endpoint}>
+                                            <td rowSpan={stat.topUsers.length}>{stat._id.endpoint}</td>
+                                            <td>{stat.topUsers[0].user_id}</td>
+                                            <td>{stat.topUsers[0].username}</td>
+                                            <td>{stat.topUsers[0].email}</td>
+                                            <td>{stat.topUsers[0].count}</td>
+                                        </tr>
+                                        {stat.topUsers.slice(1).map(user => {
+                                            <tr key={user.user_id}><td>{user.user_id}</td><td>{user.username}</td><td>{user.email}</td><td>{user.count}</td></tr>
+                                        })}
+                                    </>
+                                }
+                                )}
                             </tbody>
                         </table>
                     </div>
