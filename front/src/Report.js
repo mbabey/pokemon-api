@@ -57,14 +57,17 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                 (reportTable?.report_num === "1") &&
                 (
                     <div>
-                        <div>Report {reportTable?.report_num}</div>
+                        <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
+                        <table>
+                            <tr><th></th></tr>
+                        </table>
                     </div>
                 )
             }{
                 (reportTable?.report_num === "2") &&
                 (
                     <div>
-                        <div>Report {reportTable?.report_num}</div>
+                        <div>Report {reportTable?.report_num} - Top </div>
                         <table>
                             <tr><th></th></tr>
                         </table>

@@ -124,16 +124,19 @@ app.get('/report', async (req, res) => {
   const END_DATE = Date.now();
   const START_DATE = END_DATE - MS_PER_WEEK;
 
+  let report_name
   let stats;
 
   switch (req.query.id) {
-    case "1": // Unique API users over a period of time
+    case "1":
       {
+        report_name = "Unique API users over a period of time";
         stats = await logModel.distinct('user_id', { timestamp: { $gte: START_DATE, $lte: END_DATE } });
         break;
       }
-    case "2": // Top API users over period of time
+    case "2":
       {
+        report_name = "Top API users over period of time"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
           { $group: { _id: '$user_id', count: { $sum: 1 } } },
@@ -142,8 +145,9 @@ app.get('/report', async (req, res) => {
         ])
         break;
       }
-    case "3": // Top users for each Endpoint
+    case "3":
       {
+        report_name = "Top users for each Endpoint"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE } } },
           { $group: { _id: { endpoint: '$endpoint', user_id: '$user_id' }, count: { $sum: 1 } } },
@@ -152,18 +156,19 @@ app.get('/report', async (req, res) => {
         ])
         break;
       }
-    case "4": // 4xx Errors By Endpoint
+    case "4":
       {
+        report_name = "4xx Errors By Endpoint"
         stats = await logModel.aggregate([
           { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE }, status_code: { $gte: 400, $lt: 500 } } },
           { $group: { _id: '$endpoint', count: { $sum: 1 } } }
         ])
         break;
       }
-    case "5": // Recent 4xx/5xx Errors
+    case "5":
       {
         const CUT_OFF_DATE = END_DATE - 24 * 60 * 60 * 1000
-
+        report_name = "Recent 4xx/5xx Errors"
         stats = await logModel.find({ status_code: { $gte: 400 }, timestamp: { $gte: CUT_OFF_DATE } })
         .sort({ timestamp: -1 })
         break;
@@ -171,6 +176,7 @@ app.get('/report', async (req, res) => {
     default: ;
   }
   const return_object = {
+    report_name: report_name,
     report_num: req.query.id,
     statistics: stats
   }
