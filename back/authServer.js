@@ -104,7 +104,7 @@ app.post('/login', asyncWrapper(async (req, res) => {
     { new: true });
 
   const authorization_header_field = accessToken + "," + refreshToken;
-  res.header('Authorization', authorization_header_field);
+  res.header('authorization', authorization_header_field);
   res.send(logged_in_user)
 }));
 

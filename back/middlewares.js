@@ -29,12 +29,14 @@ const authAdmin = asyncWrapper(async (req, res, next) => {
 
 const logRequest = asyncWrapper(async (req, res, next) => {
 
+    const url = req.url;
+    const method = req.method;
     const timestamp = Date.now();
     const time_start = timestamp;
 
-    res.on('finish', () => {
+    res.on('finish', async () => {
         const time_end = Date.now();
-        const user = getUser(req, res);
+        const user = await getUserFromToken(req, res);
         const status_code = res.statusCode;
         const origin = req.header('origin');
 
@@ -45,8 +47,8 @@ const logRequest = asyncWrapper(async (req, res, next) => {
             username: user.username,
             email: user.email,
             origin: origin,
-            endpoint: req.url,
-            method: req.method,
+            endpoint: url,
+            method: method,
             status_code: status_code,
             response_time_ms: time_diff
         };
@@ -57,14 +59,52 @@ const logRequest = asyncWrapper(async (req, res, next) => {
     next();
 });
 
-function getUser(req, res) {
+async function getUserFromToken(req, res) {
     console.log(req.body);
+    let user;
     let refresh_token;
-    // Get the refresh token if it is in the auth header or if it is in the request query as 'appid'
-    const auth_header = res.getHeaders()['authorization']?.split(',');
-    (auth_header)?(refresh_token=(auth_header.length==2)?auth_header[1].split(' ')[1]:auth_header[0].split(' ')[1]):(refresh_token=req.query?.appid?.split(' ')[1]);
-    const token_payload = jwt.decode(refresh_token, process.env.REFRESH_TOKEN_SECRET);
-    const user = token_payload?.user;
+    let access_token;
+    let token_payload;
+   
+    // Get the auth header either from the response or the request.
+    let auth_header = res.getHeaders()['authorization']?.split(',');
+    if (!auth_header) {
+        auth_header = req.header('authorization')?.split(',');
+    }
+
+
+    // Get the refresh token.
+    if (auth_header) {
+        refresh_token = (auth_header.length == 2) ? auth_header[1].split(' ')[1] : auth_header[0].split(' ')[1];
+    }
+    // If there is no refresh token, get the access token.
+    if (!refresh_token && auth_header) {
+        access_token = auth_header[0].split(' ')[1];
+    }
+    // If there is no access token and no refresh token, get the appid as the refresh token (/logout)
+    if (!refresh_token && !access_token) {
+        refresh_token = req.query?.appid?.split(' ')[1]
+    }
+
+
+    // Get the user from a token.
+    if (refresh_token) {
+        token_payload = jwt.decode(refresh_token, process.env.REFRESH_TOKEN_SECRET);
+        user = token_payload?.user;
+    } else if (access_token) {
+        token_payload = jwt.decode(access_token, process.env.ACCESS_TOKEN_SECRET);
+        user = token_payload?.user;
+    }
+
+    // Just set dat stuff if ya gotta
+    if (!user)
+    {
+        user = {
+            _id: 0,
+            username: 'Unknown name',
+            email: 'Unknown email'
+        }
+    }
 
     return user;
 }
