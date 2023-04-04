@@ -169,8 +169,8 @@ app.get('/report', async (req, res) => {
       {
         report_name = "4xx Errors by Endpoint Over the Last Week"
         stats = await logModel.aggregate([
-          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE }, status_code: { $gte: 400, $lt: 500 } } },
-          { $group: { _id: '$endpoint', count: { $sum: 1 } } }
+          { $match: { timestamp: { $gte: START_DATE, $lte: END_DATE }, status_code: { $gte: 400, $lte: 500 } } },
+          { $group: { _id: { endpoint: '$endpoint', status_code: '$status_code' }, count: { $sum: 1 } } }
         ])
         break;
       }

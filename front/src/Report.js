@@ -122,7 +122,12 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
-                            <tr><th></th></tr>
+                        <thead>
+                                <tr><th>Endpoint</th><th>Error</th><th>Count</th><th>Accesses</th></tr>
+                            </thead>
+                            <tbody>
+                                {reportTable.statistics.map(stat => <tr key={stat._id.endpoint}><td>{stat._id.endpoint}</td><td>{stat._id.status_code}</td><td>{stat.count}</td></tr>)}
+                            </tbody>
                         </table>
                     </div>
                 )
