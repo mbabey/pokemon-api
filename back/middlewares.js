@@ -41,10 +41,9 @@ const logRequest = asyncWrapper(async (req, res, next) => {
         if (auth_header) {
             refresh_token = (auth_header.length == 2) ? auth_header[1].split(' ')[1] : auth_header[0].split(' ')[1];
         } else {
-            refresh_token = req.query.appid;
+            refresh_token = req.query.appid.split(' ')[1];
         }
         const token_payload = jwt.decode(refresh_token, process.env.REFRESH_TOKEN_SECRET);
-        console.log(token_payload.user);
 
         const time_end = Date.now();
         const user = token_payload.user;
@@ -55,6 +54,8 @@ const logRequest = asyncWrapper(async (req, res, next) => {
         const new_log = {
             timestamp: timestamp,
             user_id: user._id,
+            username: user.username,
+            email: user.email,
             endpoint: req.url,
             method: req.method,
             status_code: status_code,
