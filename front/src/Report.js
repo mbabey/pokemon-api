@@ -61,10 +61,12 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
-                            <tr><th>User ID</th><th>Username</th><th>Email</th></tr>
-                            {reportTable.statistics.map(stat => {
-                                return <tr><td>{stat._id.user_id}</td><td>{stat._id.username}</td><td>{stat._id.email}</td></tr>
-                            })}
+                            <thead>
+                                <tr><th>User ID</th><th>Username</th><th>Email</th></tr>
+                            </thead>
+                            <tbody>
+                                {reportTable.statistics.map(stat => <tr key={stat._id.user_id}><td>{stat._id.user_id}</td><td>{stat._id.username}</td><td>{stat._id.email}</td></tr>)}
+                            </tbody>
                         </table>
                     </div>
                 )
@@ -74,7 +76,12 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
-                            <tr><th></th></tr>
+                            <thead>
+                                <tr><th>User ID</th><th>Username</th><th>Email</th><th>Accesses</th></tr>
+                            </thead>
+                            <tbody>
+                                {reportTable.statistics.map(stat => <tr key={stat._id.user_id}><td>{stat._id.user_id}</td><td>{stat._id.username}</td><td>{stat._id.email}</td><td>{stat.count}</td></tr>)}
+                            </tbody>
                         </table>
                     </div>
                 )
@@ -84,7 +91,12 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
                     <div>
                         <div>Report {reportTable.report_num} - {reportTable.report_name}</div>
                         <table>
-                            <tr><th></th></tr>
+                            <thead>
+                                <tr><th>User ID</th><th>Username</th><th>Email</th><th>Accesses</th></tr>
+                            </thead>
+                            <tbody>
+                                {reportTable.statistics.map(stat => <tr key={stat._id.user_id}><td>{stat._id.user_id}</td><td>{stat._id.username}</td><td>{stat._id.email}</td><td>{stat.count}</td></tr>)}
+                            </tbody>
                         </table>
                     </div>
                 )
