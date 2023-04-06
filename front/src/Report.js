@@ -53,7 +53,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
     }, [id]);
 
     return (
-        <div>
+        <div className='report-container'>
             {
                 (reportTable?.report_num === "1") &&
                 (
