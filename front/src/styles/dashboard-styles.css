@@ -1,12 +1,7 @@
-.dashboard-report-selector
-{
-    width: 40%;
-    min-width: 200px;
+.dashboard-report-selector {
     background-color: #f5f5f5;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    display: flex;
-    flex-direction: row;
 }
 
 ul {
@@ -22,6 +17,7 @@ li>a {
     font-weight: bold;
     font-size: 0.9rem;
     padding: 8px 16px;
+    text-align: center;
     text-decoration: none;
     transition: 0.25s cubic-bezier(0.23, 1, 0.320, 1);
     border-bottom: 5px solid #00000000;
@@ -31,31 +27,4 @@ li>a:hover {
     background-color: rgb(171, 220, 141);
     color: white;
     border-bottom: 5px solid rgb(171, 220, 141);
-}
-
-.popout-clicker
-{
-    margin: auto 5px;
-    width: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-content: center;
-    padding-left: 12px;
-    cursor: pointer;
-    border-radius: 15px;
-}
-
-.popout-clicker:nth-child(2)
-{
-    padding-bottom: 10px;
-}
-
-.popout-clicker:hover{
-    background-color: #80808033;
-    transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.popout-clicker>div{
-    font-weight: bold;
 }
