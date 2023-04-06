@@ -35,10 +35,27 @@ li>a:hover {
 
 .popout-clicker
 {
-    margin: auto;
+    margin: auto 5px;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+    padding-left: 12px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.popout-clicker:nth-child(2)
+{
+    padding-bottom: 10px;
+}
+
+.popout-clicker:hover{
+    background-color: #80808033;
+    transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .popout-clicker>div{
-    transform: rotate(90deg);
-    white-space: nowrap;
+    font-weight: bold;
 }

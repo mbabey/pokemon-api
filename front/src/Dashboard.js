@@ -20,7 +20,9 @@ function Dashboard({ accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }
                     <li><Link to="/report/5">Report 5 - Recent 4xx/5xx Errors</Link></li>
                 </ul>
                 <div className='popout-clicker'>
-                    <div>. . .</div>
+                        <div>.</div>
+                        <div>.</div>
+                        <div>.</div>
                 </div>
             </div>
 
