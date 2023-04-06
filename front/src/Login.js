@@ -37,6 +37,7 @@ function Login({ SERVER_ADDRESS }) {
                 console.log("Unkown error.");
             }
         }
+        setUsername('');
     }
 
     const onCreateAccountHandle = async (e) => {
@@ -61,6 +62,7 @@ function Login({ SERVER_ADDRESS }) {
                 console.log("Unkown error.");
             }
         }
+        setUsername('');
     }
 
     const onLogoutHandle = async (e) => {
