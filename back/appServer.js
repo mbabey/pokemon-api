@@ -25,7 +25,7 @@ var pokeModel = null;
 
 async function start() {
   const options = {
-    "dropPokemon": false
+    "dropPokemon": true
   }
 
   await connectDB(options);

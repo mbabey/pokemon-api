@@ -25,7 +25,7 @@ const admin = {
 }
 
 async function start() {
-  await connectDB({ "dropUsers": true, "dropLogs": false });
+  await connectDB({ "dropUsers": false, "dropLogs": false });
   app.listen(process.env.authServerPORT, async (err) => {
     if (err) {
       throw new PokemonDbError(err)
