@@ -4,8 +4,9 @@
   "main": "appServer.js",
   "scripts": {
     "test": "jest --detectOpenHandles --runInBand",
-    "start": "nodemon authServer.js",
-    "app": "nodemon appServer.js"
+    "start": "node authServer.js & node appServer.js",
+    "app": "nodemon appServer.js",
+    "auth": "nodemon authServer.js"
   },
   "repository": {
     "type": "git",
