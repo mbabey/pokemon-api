@@ -73,8 +73,7 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
             setAccessToken(null);
         } catch (err) {
             console.log(err);
-            if (err.response.data.search('User not found') !== -1)
-            {
+            if (err.response.data.search('User not found') !== -1) {
                 setRefreshToken(null);
                 setAccessToken(null);
             }
@@ -91,7 +90,13 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
             }
             {
                 accessToken && user?.role === 'user' &&
-                <UserPage POKE_ADDRESS={POKE_ADDRESS} />
+                <UserPage
+                    accessToken={accessToken}
+                    refreshToken={refreshToken}
+                    setAccessToken={setAccessToken}
+                    POKE_ADDRESS={POKE_ADDRESS}
+                    SERVER_ADDRESS={SERVER_ADDRESS}
+                />
             }
             {
                 accessToken && user?.role === 'admin' &&
