@@ -25,8 +25,6 @@ function PokemonStats({ selectedPokemon, setSelectedPokemon }) {
         return (total / 720) * 100;
     }
 
-
-
     return (
         selectedPokemon &&
         <div className={"pokemon-stats"}>

@@ -1,3 +1,14 @@
+:root {
+    /* Stat colours from https://bulbapedia.bulbagarden.net */
+    --health-color: #FF5959; 
+    --attack-color: #F5AC78;
+    --defense-color: #FAE078;
+    --sp-attack-color: #9DB7F5;
+    --sp-defense-color: #A7DB8D;
+    --speed-color: #FA92B2;
+    --total-color: #A8B820;
+}
+
 .pokemon-stats {
     position: absolute;
     top: 50%;
@@ -84,9 +95,26 @@
     margin-right: 10px;
 }
 
-.statbar {
-    background-color: aqua;
-    border: 1px solid black;
+.statbar.hp {
+    background-color: var(--health-color);
+}
+.statbar.attack {
+    background-color: var(--attack-color);
+}
+.statbar.defense {
+    background-color: var(--defense-color);
+}
+.statbar.sp-attack {
+    background-color: var(--sp-attack-color);
+}
+.statbar.sp-defense {
+    background-color: var(--sp-defense-color);
+}
+.statbar.speed {
+    background-color: var(--speed-color);
+}
+.statbar.total {
+    background-color: var(--total-color);
 }
 
 
