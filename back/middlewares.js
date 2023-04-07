@@ -27,7 +27,7 @@ const authUser = asyncWrapper(async (req, res, next) => {
 })
 
 const authAdmin = asyncWrapper(async (req, res, next) => {
-    const token = req.header('authorization').split(',')[0];
+    const token = req.header('authorization')?.split(',')[0];
     const payload = jwt.verify(token.split(' ')[1], process.env.ACCESS_TOKEN_SECRET)
     if (payload?.user?.role == "admin") {
         return next()
