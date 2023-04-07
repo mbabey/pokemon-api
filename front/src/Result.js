@@ -55,7 +55,6 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, setTota
         const res = await axiosToBeIntercepted.get(`${POKE_ADDRESS}/api/v1/pokemon?id=${id}`, {
             headers: { 'authorization': accessToken }
         });
-        console.log(res.data);
         setSelectedPokemon(res.data);
     }
 

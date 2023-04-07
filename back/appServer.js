@@ -75,7 +75,6 @@ app.get('/api/v1/pokemons', asyncWrapper(async (req, res) => {
 
 app.get('/api/v1/pokemon', asyncWrapper(async (req, res) => {
   const { id } = req.query
-  console.log(req.query)
   const docs = await pokeModel.findOne({ "id": id })
   if (docs)
   {

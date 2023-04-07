@@ -3,8 +3,8 @@ import './styles/style.css'
 
 function App() {
 
-  const SERVER_URL = 'https://pokedex-server-z1j1.onrender.com';
-  // const SERVER_URL = 'http://localhost';
+  // const SERVER_URL = 'https://pokedex-server-z1j1.onrender.com';
+  const SERVER_URL = 'http://localhost';
   
 
   const AUTH_PORT = 5011;

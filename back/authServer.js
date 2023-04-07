@@ -47,6 +47,7 @@ function isRefresh(token) {
 
 app.post('/register', asyncWrapper(async (req, res) => {
   const { username, password, email } = req.body
+  console.log(req.body);
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
   const userWithHashedPassword = { ...req.body, password: hashedPassword }
@@ -87,6 +88,7 @@ app.post('/requestNewAccessToken', asyncWrapper(async (req, res) => {
 
 app.post('/login', asyncWrapper(async (req, res) => {
   const { username, password } = req.body
+  console.log(req.body);
   const user = await userModel.findOne({ username: username });
   if (!user)
     throw new PokemonAuthError("User not found")
