@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 import PokemonCard from './PokemonCard';
 import PokemonStats from './PokemonStats';
 
-const POKE_JSON = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json';
+// const POKE_JSON = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json';
 
 function Result({ selectedTypes, queryName, currentPage, setCurrentPage, setTotalPages,
     accessToken, refreshToken, setAccessToken, SERVER_ADDRESS, POKE_ADDRESS }) {
