@@ -32,8 +32,8 @@ const getTypes = () => {
             "HP": Number,
             "Attack": Number,
             "Defense": Number,
-            'Speed Attack': Number,
-            'Speed Defense': Number,
+            'Special Attack': Number,
+            'Special Defense': Number,
             "Speed": Number
           }
         })

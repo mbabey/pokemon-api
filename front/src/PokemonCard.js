@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/pokemon-card.css'
 
-function PokemonCard({ poke, setSelectedPokemon }) {
+function PokemonCard({ poke, getPokemon }) {
 
     const zeroes = (id) => {
         if (id < 10) {
@@ -14,7 +14,7 @@ function PokemonCard({ poke, setSelectedPokemon }) {
     }
 
     return (
-        <div className={"poke-card"} onClick={() => setSelectedPokemon(poke)}>
+        <div className={"poke-card"} onClick={() => getPokemon(poke.id)}>
             <div className={"id"}>#{zeroes(poke.id)}{poke.id}</div>
             <div className={"name"}>{poke.name.english}</div>
             <div className={"pic"}>

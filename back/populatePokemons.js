@@ -20,9 +20,9 @@ const populatePokemons = (pokeSchema) => {
         });
         Promise.all(arr.map(element => {
           return new Promise((resolve, reject) => {
-            element["base"]["Speed Attack"] = element["base"]["Sp. Attack"];
+            element["base"]["Special Attack"] = element["base"]["Sp. Attack"];
             delete element["base"]["Sp. Attack"];
-            element["base"]["Speed Defense"] = element["base"]["Sp. Defense"];
+            element["base"]["Special Defense"] = element["base"]["Sp. Defense"];
             delete element["base"]["Sp. Defense"];
             pokeModel.findOneAndUpdate(element, {}, { upsert: true, new: true })
               .then(async (err, result) => {

@@ -75,9 +75,14 @@ app.get('/api/v1/pokemons', asyncWrapper(async (req, res) => {
 
 app.get('/api/v1/pokemon', asyncWrapper(async (req, res) => {
   const { id } = req.query
-  const docs = await pokeModel.find({ "id": id })
-  if (docs.length != 0) res.json(docs)
-  else res.json({ errMsg: "Pokemon not found" })
+  console.log(req.query)
+  const docs = await pokeModel.findOne({ "id": id })
+  if (docs)
+  {
+    res.json(docs)
+  } else {
+    res.json({ errMsg: "Pokemon not found" })
+  }
 }))
 
 app.use(authAdmin)

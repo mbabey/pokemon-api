@@ -40,7 +40,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
 
     useEffect(() => {
         async function fetchData() {
-            const res = await axios.get(`${POKE_ADDRESS}/api/v1/pokedex`, {
+            const res = await axiosToBeIntercepted.get(`${POKE_ADDRESS}/api/v1/pokedex`, {
                 headers: { 'authorization': accessToken }
             })
             setPokedex(res.data);
@@ -50,6 +50,13 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
         }
     })
 
+    async function getPokemon(id) {
+        const res = await axiosToBeIntercepted.get(`${POKE_ADDRESS}/api/v1/pokemon?id=${id}`, {
+            headers: { 'authorization': accessToken }
+        });
+        console.log(res.data);
+        setSelectedPokemon(res.data);
+    }
 
     const regex = new RegExp(`^.*${queryName}.*$`, 'im');
     const startIndex = (currentPage - 1) * PAGE_SIZE;
@@ -67,7 +74,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
                             <PokemonCard
                                 key={poke.name.english}
                                 poke={poke}
-                                setSelectedPokemon={setSelectedPokemon}
+                                getPokemon={getPokemon}
                             />
                         )
                     })
