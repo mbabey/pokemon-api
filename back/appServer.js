@@ -58,7 +58,6 @@ app.use(authUser)
 app.get('/api/v1/pokedex', asyncWrapper(async (req, res) => {
   const docs = await pokeModel.find({})
   .sort({ "id": 1 })
-  console.log(docs);
   res.json(docs);
 }));
 

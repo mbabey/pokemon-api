@@ -4,7 +4,12 @@ const jwt = require("jsonwebtoken");
 
 const {
     PokemonAuthError
-  } = require("./errors.js")
+} = require("./errors.js")
+
+function isAccess(token) {
+    return (token.split(' ')[0] == "Bearer");
+}
+
 
 const authUser = asyncWrapper(async (req, res, next) => {
     const auth_header = req.header('authorization');
@@ -66,7 +71,7 @@ function getUserFromToken(req, res) {
     let refresh_token;
     let access_token;
     let token_payload;
-   
+
     // Get the auth header either from the response or the request.
     let auth_header = res.getHeaders()['authorization']?.split(',');
     if (!auth_header) {
@@ -92,8 +97,7 @@ function getUserFromToken(req, res) {
     }
 
     // Just set data stuff if ya gotta
-    if (!user)
-    {
+    if (!user) {
         user = {
             _id: 0,
             username: 'Unknown name',

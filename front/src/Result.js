@@ -23,9 +23,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
             try {
                 const res = await axios.post(`${SERVER_ADDRESS}/requestNewAccessToken`, {},
                     {
-                        headers: {
-                            'authorization': refreshToken
-                        }
+                        headers: { 'authorization': refreshToken }
                     });
                 setAccessToken(res.headers['authorization']);
                 config.headers['authorization'] = res.headers['authorization'];
@@ -39,13 +37,19 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
         return Promise.reject(err);
     });
 
+
     useEffect(() => {
         async function fetchData() {
-            const res = await axios.get(`${POKE_ADDRESS}/api/v1/pokedex`)
+            const res = await axios.get(`${POKE_ADDRESS}/api/v1/pokedex`, {
+                headers: { 'authorization': accessToken }
+            })
             setPokedex(res.data);
         }
-        fetchData();
+        if (pokedex.length === 0) {
+            fetchData();
+        }
     })
+
 
     const regex = new RegExp(`^.*${queryName}.*$`, 'im');
     const startIndex = (currentPage - 1) * PAGE_SIZE;
