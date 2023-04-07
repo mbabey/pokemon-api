@@ -6,7 +6,9 @@
     "test": "jest --detectOpenHandles --runInBand",
     "start": "node authServer.js & node appServer.js",
     "app": "nodemon appServer.js",
-    "auth": "nodemon authServer.js"
+    "auth": "nodemon authServer.js",
+    "prodapp": "node appServer.js",
+    "prodauth": "node authServer.js"
   },
   "repository": {
     "type": "git",
