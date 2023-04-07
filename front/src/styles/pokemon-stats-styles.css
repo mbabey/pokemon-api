@@ -83,8 +83,6 @@
     display: grid;
     grid-template-columns: 30% 70%;
     grid-template-rows: repeat(7, 1fr);
-    background-color: #734ae8;
-    background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%);
 }
 
 .statname,
