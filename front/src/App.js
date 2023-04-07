@@ -3,7 +3,8 @@ import './styles/style.css'
 
 function App() {
 
-  const SERVER_URL = 'https://pokedex-server-z1j1.onrender.com';
+  const POKEDEX_AUTH_SERVER_URL = 'https://pokedex-auth-server.onrender.com';
+  const POKEDEX_SERVER_URL = 'https://pokedex-server-z1j1.onrender.com';
   // const SERVER_URL = 'http://localhost';
   
   // const AUTH_PORT = 5011;
@@ -15,8 +16,8 @@ function App() {
   return (
     <>
       <Login 
-        SERVER_ADDRESS={SERVER_URL}
-        POKE_ADDRESS={SERVER_URL}
+        SERVER_ADDRESS={POKEDEX_AUTH_SERVER_URL}
+        POKE_ADDRESS={POKEDEX_SERVER_URL}
        />
     </>
   );
