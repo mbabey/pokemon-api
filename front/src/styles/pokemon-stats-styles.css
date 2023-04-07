@@ -3,8 +3,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     background-color: #ffffff;
     border-top-left-radius: 50%;
     border-top-right-radius: 10px;
@@ -28,9 +28,9 @@
 
 .stats-id,
 .stats-name {
-    text-align: center;
     width: 50%;
-    margin-left: auto;
+    margin-left: 25%;
+    text-align: center;
 }
 
 .stats-id {
@@ -45,20 +45,29 @@
 
 .stats-pic{
     display: flex;
-    justify-content: right;
-    margin-right: 5px;
-    filter: drop-shadow(4px 2px 4px #00000077);
+    justify-content: center;
+    border-bottom: 3px solid red;
+    border-radius: 50%;
+    margin-left: 10px;
 }
 
 .stats-pic img
 {
     width: 200px;
     height: auto;
+    filter: drop-shadow(4px 2px 4px #00000077);
 }
 
 .stats-block
 {
     position: relative;
-    top: -30%;
-    left: 15%;
+    top: 0;
+    left: 10%;
+    width: 150px;
+    background-color: #ff000077;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00000066;
+    padding: 8px 16px;
 }
+
+
