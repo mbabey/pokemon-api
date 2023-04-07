@@ -3,7 +3,7 @@ import Search from "./Search";
 import Result from "./Result";
 import { useState } from "react";
 
-function UserPage() {
+function UserPage({ POKE_ADDRESS }) {
     const PAGE_SIZE = 10;
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [queryName, setQueryName] = useState('');

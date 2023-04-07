@@ -55,6 +55,12 @@ function isAccess(token)
 
 app.use(logRequest)
 app.use(authUser)
+app.get('/api/v1/pokedex', asyncWrapper(async (req, res) => {
+  const docs = await pokeModel.find({})
+  .sort({ "id": 1 })
+  res.json(docs);
+}));
+
 app.get('/api/v1/pokemons', asyncWrapper(async (req, res) => {
   if (!req.query["count"])
     req.query["count"] = 10
@@ -133,11 +139,6 @@ app.patch('/api/v1/pokemon/:id', asyncWrapper(async (req, res) => {
     throw new PokemonNotFoundError("");
   }
 }))
-
-app.get('/report', (req, res) => {
-  console.log("Report requested");
-  res.send(`Table ${req.query.id}`)
-})
 
 app.use(handleErr)
 

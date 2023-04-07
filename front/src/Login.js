@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 import UserPage from './UserPage';
 import './styles/login-styles.css'
 
-function Login({ SERVER_ADDRESS }) {
+function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -91,7 +91,7 @@ function Login({ SERVER_ADDRESS }) {
             }
             {
                 accessToken && user?.role === 'user' &&
-                <UserPage />
+                <UserPage POKE_ADDRESS={POKE_ADDRESS} />
             }
             {
                 accessToken && user?.role === 'admin' &&

@@ -5,13 +5,15 @@ import Pagination from './Pagination';
 import PokemonCard from './PokemonCard';
 import PokemonStats from './PokemonStats';
 
-function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SIZE }) {
+const POKE_JSON = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json';
+
+function Result({ selectedTypes, queryName, currentPage, setCurrentPage, PAGE_SIZE, POKE_ADDRESS }) {
     const [pokedex, setPokedex] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
-            const res = await axios.get('https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json')
+            const res = await axios.get(`${POKE_ADDRESS}/api/v1/pokedex`)
             setPokedex(res.data);
         }
         fetchData();
