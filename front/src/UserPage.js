@@ -4,11 +4,14 @@ import Result from "./Result";
 import { useState } from "react";
 
 function UserPage({ accessToken, refreshToken, setAccessToken, POKE_ADDRESS, SERVER_ADDRESS }) {
-    const PAGE_SIZE = 10;
+    
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [queryName, setQueryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-  
+    const [totalPages, setTotalPages] = useState(1); 
+    
+    
+
     return (
         <>
             <Search
@@ -24,7 +27,6 @@ function UserPage({ accessToken, refreshToken, setAccessToken, POKE_ADDRESS, SER
                 accessToken={accessToken}
                 refreshToken={refreshToken}
                 setAccessToken={setAccessToken}
-                PAGE_SIZE={PAGE_SIZE}
                 POKE_ADDRESS={POKE_ADDRESS}
                 SERVER_ADDRESS={SERVER_ADDRESS}
             />

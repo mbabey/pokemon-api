@@ -27,6 +27,8 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
             const authorization_tokens = res.headers['authorization'].split(',');
             setAccessToken(authorization_tokens[0]);
             setRefreshToken(authorization_tokens[1]);
+            setUsername('');
+            e.target[0].value = '';
         } catch (err) {
             e.target[2].blur();
             if (err.response.data.search('User') !== -1) {
@@ -37,7 +39,8 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
                 console.log("Unkown error.");
             }
         }
-        setUsername('');
+        setPassword('');
+        e.target[1].value = '';
     }
 
     const onCreateAccountHandle = async (e) => {
@@ -52,6 +55,10 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
                     password: password
                 });
             onLoginHandle(e);
+            setUsername('');
+            e.target[0].value = '';
+            setEmail('');
+            e.target[1].value = '';
         } catch (err) {
             e.target[3].blur();
             if (err.response.data.search('username') !== -1) {
@@ -62,7 +69,8 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
                 console.log("Unkown error.");
             }
         }
-        setUsername('');
+        setPassword('');
+        e.target[2].value = '';
     }
 
     const onLogoutHandle = async (e) => {

@@ -10,7 +10,8 @@ const POKE_JSON = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master
 
 function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
     accessToken, refreshToken, setAccessToken,
-    PAGE_SIZE, SERVER_ADDRESS, POKE_ADDRESS }) {
+    SERVER_ADDRESS, POKE_ADDRESS }) {
+    const PAGE_SIZE = 10;
     const [pokedex, setPokedex] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState(null);
 
