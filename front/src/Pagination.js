@@ -2,9 +2,15 @@ import React from 'react'
 import './styles/pagination-styles.css'
 
 
-function Pagination({ pokemon, PAGE_SIZE, setCurrentPage, currentPage }) {
+function Pagination({ pokemon, PAGE_SIZE, currentPage,  setCurrentPage, setTotalPages }) {
     const pokePages = Math.ceil(pokemon.length / PAGE_SIZE);
     
+    // If pokepages has been properly initialized, use it to set the total number of pages.
+    if (pokePages)
+    {
+        setTotalPages(pokePages);
+    }
+
     return (
         <div className={"pagination"}>
             {

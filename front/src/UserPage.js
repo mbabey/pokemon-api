@@ -8,9 +8,13 @@ function UserPage({ accessToken, refreshToken, setAccessToken, POKE_ADDRESS, SER
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [queryName, setQueryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1); 
-    
-    
+    const [totalPages, setTotalPages] = useState(81); 
+
+    // If the total number of pages is less than the current page, set the current page to the last page.
+    if (totalPages < currentPage) 
+    {
+        setCurrentPage(totalPages);
+    }
 
     return (
         <>
@@ -24,6 +28,7 @@ function UserPage({ accessToken, refreshToken, setAccessToken, POKE_ADDRESS, SER
                 queryName={queryName}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                setTotalPages={setTotalPages}
                 accessToken={accessToken}
                 refreshToken={refreshToken}
                 setAccessToken={setAccessToken}

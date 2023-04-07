@@ -8,9 +8,9 @@ import PokemonStats from './PokemonStats';
 
 const POKE_JSON = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json';
 
-function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
-    accessToken, refreshToken, setAccessToken,
-    SERVER_ADDRESS, POKE_ADDRESS }) {
+function Result({ selectedTypes, queryName, currentPage, setCurrentPage, setTotalPages,
+    accessToken, refreshToken, setAccessToken, SERVER_ADDRESS, POKE_ADDRESS }) {
+
     const PAGE_SIZE = 10;
     const [pokedex, setPokedex] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState(null);
@@ -84,8 +84,9 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage,
             <Pagination
                 pokemon={pokemon}
                 PAGE_SIZE={PAGE_SIZE}
-                setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                setTotalPages={setTotalPages}
             />
             <PokemonStats
                 selectedPokemon={selectedPokemon}
