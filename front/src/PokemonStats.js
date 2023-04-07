@@ -27,13 +27,13 @@ function PokemonStats({ selectedPokemon, setSelectedPokemon }) {
                 <img src={`https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${zeroes(selectedPokemon.id)}${selectedPokemon.id}.png`} alt={`Pokemon #${selectedPokemon.id}: ${selectedPokemon.name.english}`}></img>
             </div>
             <div className={"stats-block"}>
-                <div className={"stat hp"}>HP: {selectedPokemon.base["HP"]}</div>
-                <div className={"stat attack"}>Attack: {selectedPokemon.base["Attack"]}</div>
-                <div className={"stat defense"}>Defense: {selectedPokemon.base["Defense"]}</div>
-                <div className={"stat sp-attack"}>Sp. Attack: {selectedPokemon.base["Sp. Attack"]}</div>
-                <div className={"stat sp-defense"}>Sp. Defense: {selectedPokemon.base["Sp. Defense"]}</div>
-                <div className={"stat speed"}>Speed: {selectedPokemon.base["Speed"]}</div>
-                <div className={"stat total"}>Total: {calculateTotal(selectedPokemon.base)}</div>
+                <div className={"statname hp"}>HP:</div><div className={"statbar hp"}>{selectedPokemon.base["HP"]}</div>
+                <div className={"statname attack"}>Attack:</div><div className={"statbar attack"}>{selectedPokemon.base["Attack"]}</div>
+                <div className={"statname defense"}>Defense:</div><div className={"statbar defense"}>{selectedPokemon.base["Defense"]}</div>
+                <div className={"statname spattack"}>SpAttack:</div><div className={"statbar spattack"}>{selectedPokemon.base["Sp. Attack"]}</div>
+                <div className={"statname spdefense"}>SpDefense:</div><div className={"statbar spdefense"}>{selectedPokemon.base["Sp. Defense"]}</div>
+                <div className={"statname speed"}>Speed:</div><div className={"statbar speed"}>{selectedPokemon.base["Speed"]}</div>
+                <div className={"statname total"}>Total:</div><div className={"statbar total"}>{calculateTotal(selectedPokemon.base)}</div>
             </div>
         </div>
     )
