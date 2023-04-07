@@ -36,8 +36,9 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
             } else if (err.response.data.search('Password') !== -1) {
                 console.log("Password invalid.");
             } else {
-                console.log("Unkown error.");
+                console.log("Unknown error.");
             }
+            console.log(err);
         }
         setPassword('');
         e.target[1].value = '';
@@ -66,8 +67,9 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
             } else if (err.response.data.search('email') !== -1) {
                 console.log("Email taken.");
             } else {
-                console.log("Unkown error.");
+                console.log("Unknown error.");
             }
+            console.log(err);
         }
         setPassword('');
         e.target[2].value = '';
