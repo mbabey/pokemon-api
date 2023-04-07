@@ -70,8 +70,23 @@
     border-radius: 5px;
     padding: 8px 16px;
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 30% 70%;
     grid-template-rows: repeat(7, 1fr);
+}
+
+.statname,
+.statbar {
+    font-size: 0.8rem;
+}
+
+.statname {   
+    text-align: right;
+    margin-right: 10px;
+}
+
+.statbar {
+    background-color: aqua;
+    border: 1px solid black;
 }
 
 
