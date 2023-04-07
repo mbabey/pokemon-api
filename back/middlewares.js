@@ -1,7 +1,10 @@
 const { asyncWrapper } = require("./asyncWrapper.js");
 const logModel = require('./logModel.js');
-const userModel = require('./userModel.js');
 const jwt = require("jsonwebtoken");
+
+const {
+    PokemonAuthError
+  } = require("./errors.js")
 
 const authUser = asyncWrapper(async (req, res, next) => {
     const auth_header = req.header('authorization');
