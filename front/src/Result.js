@@ -9,7 +9,7 @@ import PokemonStats from './PokemonStats';
 // const POKE_JSON = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json';
 
 function Result({ selectedTypes, queryName, currentPage, setCurrentPage, setTotalPages,
-    accessToken, refreshToken, setAccessToken, SERVER_ADDRESS, POKE_ADDRESS }) {
+    accessToken, refreshToken, setAccessToken, POKEDEX_AUTH_SERVER_URL, POKEDEX_SERVER_URL }) {
 
     const PAGE_SIZE = 10;
     const [pokedex, setPokedex] = useState([]);
@@ -22,7 +22,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, setTota
         if (decoded.exp < currentTime) {
             console.log("token expired");
             try {
-                const res = await axios.post(`${SERVER_ADDRESS}/requestNewAccessToken`, {},
+                const res = await axios.post(`${POKEDEX_AUTH_SERVER_URL}/requestNewAccessToken`, {},
                     {
                         headers: { 'authorization': refreshToken }
                     });
@@ -41,7 +41,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, setTota
 
     useEffect(() => {
         async function fetchData() {
-            const res = await axiosToBeIntercepted.get(`${POKE_ADDRESS}/api/v1/pokedex`, {
+            const res = await axiosToBeIntercepted.get(`${POKEDEX_SERVER_URL}/api/v1/pokedex`, {
                 headers: { 'authorization': accessToken }
             })
             setPokedex(res.data);
@@ -52,7 +52,7 @@ function Result({ selectedTypes, queryName, currentPage, setCurrentPage, setTota
     })
 
     async function getPokemon(id) {
-        const res = await axiosToBeIntercepted.get(`${POKE_ADDRESS}/api/v1/pokemon?id=${id}`, {
+        const res = await axiosToBeIntercepted.get(`${POKEDEX_SERVER_URL}/api/v1/pokemon?id=${id}`, {
             headers: { 'authorization': accessToken }
         });
         setSelectedPokemon(res.data);

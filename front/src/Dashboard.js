@@ -8,7 +8,7 @@ import {
     Link
 } from "react-router-dom";
 
-function Dashboard({ accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }) {
+function Dashboard({ accessToken, setAccessToken, refreshToken, POKEDEX_AUTH_SERVER_URL }) {
     return (
         <div>
             <div className='dashboard-report-selector'>
@@ -22,11 +22,11 @@ function Dashboard({ accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }
             </div>
 
             <Routes>
-                <Route path="/report/1" element={<Report id={1} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS} />} />
-                <Route path="/report/2" element={<Report id={2} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS} />} />
-                <Route path="/report/3" element={<Report id={3} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS} />} />
-                <Route path="/report/4" element={<Report id={4} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS} />} />
-                <Route path="/report/5" element={<Report id={5} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} SERVER_ADDRESS={SERVER_ADDRESS} />} />
+                <Route path="/report/1" element={<Report id={1} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL} />} />
+                <Route path="/report/2" element={<Report id={2} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL} />} />
+                <Route path="/report/3" element={<Report id={3} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL} />} />
+                <Route path="/report/4" element={<Report id={4} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL} />} />
+                <Route path="/report/5" element={<Report id={5} accessToken={accessToken} setAccessToken={setAccessToken} refreshToken={refreshToken} POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL} />} />
             </Routes>
         </div>
     )

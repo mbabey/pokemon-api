@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 import UserPage from './UserPage';
 import './styles/login-styles.css'
 
-function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
+function Login({ POKEDEX_AUTH_SERVER_URL, POKEDEX_SERVER_URL }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +18,7 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
     const onLoginHandle = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${SERVER_ADDRESS}/login`,
+            const res = await axios.post(`${POKEDEX_AUTH_SERVER_URL}/login`,
                 {
                     username: username,
                     password: password
@@ -49,7 +49,7 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
         console.log()
 
         try {
-            await axios.post(`${SERVER_ADDRESS}/register`,
+            await axios.post(`${POKEDEX_AUTH_SERVER_URL}/register`,
                 {
                     username: username,
                     email: email,
@@ -78,7 +78,7 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
     const onLogoutHandle = async (e) => {
         e.preventDefault();
         try {
-            await axios.get(`${SERVER_ADDRESS}/logout`, { headers: { 'authorization': refreshToken } });
+            await axios.get(`${POKEDEX_AUTH_SERVER_URL}/logout`, { headers: { 'authorization': refreshToken } });
             setRefreshToken(null);
             setAccessToken(null);
         } catch (err) {
@@ -104,8 +104,8 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
                     accessToken={accessToken}
                     refreshToken={refreshToken}
                     setAccessToken={setAccessToken}
-                    POKE_ADDRESS={POKE_ADDRESS}
-                    SERVER_ADDRESS={SERVER_ADDRESS}
+                    POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL}
+                    POKEDEX_SERVER_URL={POKEDEX_SERVER_URL}
                 />
             }
             {
@@ -114,7 +114,7 @@ function Login({ SERVER_ADDRESS, POKE_ADDRESS }) {
                     accessToken={accessToken}
                     setAccessToken={setAccessToken}
                     refreshToken={refreshToken}
-                    SERVER_ADDRESS={SERVER_ADDRESS}
+                    POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL}
                 />
             }
             {

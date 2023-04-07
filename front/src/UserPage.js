@@ -3,7 +3,7 @@ import Search from "./Search";
 import Result from "./Result";
 import { useState } from "react";
 
-function UserPage({ accessToken, refreshToken, setAccessToken, POKE_ADDRESS, SERVER_ADDRESS }) {
+function UserPage({ accessToken, refreshToken, setAccessToken, POKEDEX_SERVER_URL, POKEDEX_AUTH_SERVER_URL }) {
     
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [queryName, setQueryName] = useState('');
@@ -32,8 +32,8 @@ function UserPage({ accessToken, refreshToken, setAccessToken, POKE_ADDRESS, SER
                 accessToken={accessToken}
                 refreshToken={refreshToken}
                 setAccessToken={setAccessToken}
-                POKE_ADDRESS={POKE_ADDRESS}
-                SERVER_ADDRESS={SERVER_ADDRESS}
+                POKEDEX_SERVER_URL={POKEDEX_SERVER_URL}
+                POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL}
             />
         </>
     )

@@ -16,8 +16,8 @@ function App() {
   return (
     <>
       <Login 
-        SERVER_ADDRESS={POKEDEX_AUTH_SERVER_URL}
-        POKE_ADDRESS={POKEDEX_SERVER_URL}
+        POKEDEX_AUTH_SERVER_URL={POKEDEX_AUTH_SERVER_URL}
+        POKEDEX_SERVER_URL={POKEDEX_SERVER_URL}
        />
     </>
   );

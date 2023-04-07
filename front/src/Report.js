@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 import './styles/report-styles.css'
 
-function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS }) {
+function Report({ id, accessToken, setAccessToken, refreshToken, POKEDEX_AUTH_SERVER_URL }) {
 
     const [reportTable, setReportTable] = useState({});
 
@@ -15,7 +15,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
         if (decoded.exp < currentTime) {
             console.log("token expired");
             try {
-                const res = await axios.post(`${SERVER_ADDRESS}/requestNewAccessToken`, {},
+                const res = await axios.post(`${POKEDEX_AUTH_SERVER_URL}/requestNewAccessToken`, {},
                     {
                         headers: {
                             'authorization': refreshToken
@@ -37,7 +37,7 @@ function Report({ id, accessToken, setAccessToken, refreshToken, SERVER_ADDRESS 
         async function fetchReport() {
             try {
                 const res = await axiosToBeIntercepted.get(
-                    `${SERVER_ADDRESS}/report?id=${id}`,
+                    `${POKEDEX_AUTH_SERVER_URL}/report?id=${id}`,
                     {
                         headers: {
                             "authorization": accessToken
