@@ -49,11 +49,11 @@ function PokemonStats({ selectedPokemon, setSelectedPokemon }) {
 
                 <div className={"statname sp-attack"}>Sp. Attack:</div>
                 <div className={"statbar sp-attack"}
-                    style={{ width: `${setStatBarWidth(selectedPokemon.base["Sp. Attack"])}%` }}>{selectedPokemon.base["Sp. Attack"]}</div>
+                    style={{ width: `${setStatBarWidth(selectedPokemon.base["Special Attack"])}%` }}>{selectedPokemon.base["Sp. Attack"]}</div>
 
                 <div className={"statname sp-defense"}>Sp. Defense:</div>
                 <div className={"statbar sp-defense"}
-                    style={{ width: `${setStatBarWidth(selectedPokemon.base["Sp. Defense"])}%` }}>{selectedPokemon.base["Sp. Defense"]}</div>
+                    style={{ width: `${setStatBarWidth(selectedPokemon.base["Special Defense"])}%` }}>{selectedPokemon.base["Sp. Defense"]}</div>
 
                 <div className={"statname speed"}>Speed:</div>
                 <div className={"statbar speed"}
