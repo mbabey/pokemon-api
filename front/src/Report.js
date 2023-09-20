@@ -43,7 +43,6 @@ function Report({ id, accessToken, setAccessToken, refreshToken, POKEDEX_AUTH_SE
                             "authorization": accessToken
                         }
                     });
-                console.log(reportTable)
                 setReportTable({ ...reportTable, ...res.data });
             } catch (err) {
                 console.log(err.message);
